@@ -29,7 +29,6 @@ Nicht gelöscht werden:
 
 - `.github/skills/**`
 - `.github/modernize/**`
-- `tools/**`
 - Finale Reports/Bundles auf oberster Ebene (`lineup-*.md`, `lineup-*.json`,
   `evaluations-*.json`)
 - `roster-*.md`, `league-config-*.md`
@@ -42,7 +41,8 @@ Nicht gelöscht werden:
 2. Nur direkte Unterordner gegen die erlaubte Namensliste prüfen.
 3. Einen Dry-Run mit allen gefundenen Zielpfaden erstellen.
 4. Vor der Löschung eine Bestätigung einholen.
-5. Nur nach Bestätigung mit `tools/cleanup_generated.py --apply` löschen.
+5. Nur nach Bestätigung mit `tools/cleanup_generated.py --apply` löschen
+   (Skript liegt direkt in diesem Skill-Ordner: `./tools/cleanup_generated.py`).
 6. Abschließend melden, welche Ordner gelöscht wurden und welche geschützt
    geblieben sind.
 

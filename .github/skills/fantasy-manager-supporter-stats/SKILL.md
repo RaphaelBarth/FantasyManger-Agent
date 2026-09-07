@@ -103,7 +103,7 @@ Rückverweis, nie als alleiniger Beleg. Suchmaschinen-Snippets zählen nicht.
 ## Ausgabe: JSON-Fragment
 
 Deckt genau den Statistik-Teil des Supporter-Gesamtschemas ab
-(`tools/schemas/report.schema.json`), damit der Orchestrator es 1:1 einfügen kann:
+(`fantasy-lineup-coordinator/tools/schemas/report.schema.json`), damit der Orchestrator es 1:1 einfügen kann:
 
 ```json
 {

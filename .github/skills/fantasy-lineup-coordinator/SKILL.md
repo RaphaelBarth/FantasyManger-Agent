@@ -81,7 +81,7 @@ werden analog nach ihrer erlaubten Menge behandelt.
    Verfügbarkeit. So bleibt der Wert **positionsübergreifend punktvergleichbar**
    (ein 90er-Kicker schlägt keinen 80er-QB im Superflex), während die
    Evaluator-Einschätzung ihn kalibriert. Umgesetzt in
-   [tools/run_week.py](../../tools/run_week.py) via `fmlib.evaluate` + `quality_tilt`.
+   [tools/run_week.py](./tools/run_week.py) via `fmlib.evaluate` + `quality_tilt`.
    - Spieler mit Bye in dieser Woche oder Gate 0 (Out/IR) sind **nicht
      startbar** und werden ausgeschlossen.
 3. **Optimierung** (siehe unten): Zuordnung Spieler → Slots, die die Summe der
@@ -93,7 +93,7 @@ werden analog nach ihrer erlaubten Menge behandelt.
 
 Es handelt sich um ein **maximales gewichtetes Zuordnungsproblem** (Spieler ↔
 eignungsfähige Slots). Es wird **exakt** über den Ungarischen Algorithmus
-(Kuhn-Munkres) gelöst — implementiert in [tools/fmlib.py](../../tools/fmlib.py)
+(Kuhn-Munkres) gelöst — implementiert in [tools/fmlib.py](./tools/fmlib.py)
 (`optimize_lineup`). Kein manueller Swap-Check nötig.
 
 Ausführbar über den End-to-End-Runner:
@@ -109,9 +109,9 @@ validierbar, plus `lineup-*.md`). Zusätzlich wird die „falls QUES aktiv"-
 Alternative berechnet und als Monitor ausgewiesen.
 
 **Team-/Gegnerprofil in den Reports:** Der Runner lädt automatisch die **gebündelte
-Liga-Wissensbasis** ([tools/team_profiles.default.json](../../tools/team_profiles.default.json):
+Liga-Wissensbasis** ([tools/team_profiles.default.json](./tools/team_profiles.default.json):
 Team-Ausrichtung + recherchierte Stärken/Schwächen je NFL-Team) und den
-**Spielplan** ([tools/schedule.default.json](../../tools/schedule.default.json)). Damit
+**Spielplan** ([tools/schedule.default.json](./tools/schedule.default.json)). Damit
 werden schon aus einem nackten Kader `team_orientation` (eigenes Team),
 `team_strengths`/`team_weaknesses`, der nächste Gegner (via Spielplan, wenn kein
 `opp` gesetzt ist) sowie `next_opponent.orientation`/`strengths`/`weaknesses`

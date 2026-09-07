@@ -66,17 +66,22 @@ Anfrage ─▶ Fantasy Manager Agent
              └─▶ Scout (bei Schwaeche: Waiver/Trade)
 ```
 
-## Werkzeuge (`tools/`, nur Python-Standardbibliothek)
+## Werkzeuge (je Skill-Ordner unter `tools/`, nur Python-Standardbibliothek)
 
-| Datei | Zweck |
-|---|---|
-| [fmlib.py](./tools/fmlib.py) | IDs, ISO-Zeit, `content_hash` (Text/JSON), `injury_gate`, Mini-Schema-Validator, Ungarischer Optimizer `optimize_lineup` |
-| [report_cache.py](./tools/report_cache.py) | Reports schreiben (md/json, kein Cache — jeder Aufruf überschreibt frisch), `verify`, `validate` |
-| [run_week.py](./tools/run_week.py) | End-to-End: Kader → frische Reports (kein Cache — jeder Lauf zieht neue Daten, **einheitliche Struktur + Vollständigkeitsprüfung**) → **Evaluator je Spieler** (`fmlib.evaluate`) → evaluator-adjustierte Punkte → optimale Elf → Scout-Zusammenfassung → Bundle (`lineup-*`, `evaluations-*`, inkl. `data_completeness`) |
-| [cleanup_generated.py](./tools/cleanup_generated.py) | Sicherer Cleanup für erzeugte `out-*`-, `reports-*`- und `temp`-Ausgabeordner; Dry-Run standardmäßig aktiv |
-| [team_profiles.default.json](./tools/team_profiles.default.json) | **Gebündelte Liga-Wissensbasis (NFL 2026):** Team-Ausrichtung (Scheme/Coordinators) + recherchierte Stärken/Schwächen je Team. Wird automatisch geladen und pro Team von `team_profiles` der Eingabe überschrieben. |
-| [schedule.default.json](./tools/schedule.default.json) | **Gebündelter Spielplan:** Gegner je Team/Woche. Füllt den nächsten Gegner automatisch, wenn die Eingabe kein `opp` liefert (Eingabe hat Vorrang). |
-| [schemas/](./tools/schemas) | JSON-Schemas: report, evaluation, lineup |
+Jeder Skill, der Code ausführt, bringt seine Tools als direkten Unterordner
+`tools/` mit — kein geteilter Top-Level-`tools/`-Ordner mehr.
+
+| Datei | Skill (Owner) | Zweck |
+|---|---|---|
+| [fmlib.py](./.github/skills/fantasy-lineup-coordinator/tools/fmlib.py) | fantasy-lineup-coordinator | IDs, ISO-Zeit, `content_hash` (Text/JSON), `injury_gate`, Mini-Schema-Validator, Ungarischer Optimizer `optimize_lineup` |
+| [report_cache.py](./.github/skills/fantasy-lineup-coordinator/tools/report_cache.py) | fantasy-lineup-coordinator | Reports schreiben (md/json, kein Cache — jeder Aufruf überschreibt frisch), `verify`, `validate` |
+| [run_week.py](./.github/skills/fantasy-lineup-coordinator/tools/run_week.py) | fantasy-lineup-coordinator | End-to-End: Kader → frische Reports (kein Cache — jeder Lauf zieht neue Daten, **einheitliche Struktur + Vollständigkeitsprüfung**) → **Evaluator je Spieler** (`fmlib.evaluate`) → evaluator-adjustierte Punkte → optimale Elf → Scout-Zusammenfassung → Bundle (`lineup-*`, `evaluations-*`, inkl. `data_completeness`) |
+| [schemas/](./.github/skills/fantasy-lineup-coordinator/tools/schemas) | fantasy-lineup-coordinator | JSON-Schemas: report, evaluation, lineup |
+| [cleanup_generated.py](./.github/skills/fantasy-manager-cleanup/tools/cleanup_generated.py) | fantasy-manager-cleanup | Sicherer Cleanup für erzeugte `out-*`-, `reports-*`- und `temp`-Ausgabeordner; Dry-Run standardmäßig aktiv |
+
+Andere Skills (Supporter, Evaluator, Team-Auswertung) **führen diese Tools nicht
+selbst aus** — sie referenzieren nur den `fantasy-lineup-coordinator`-Skill als
+alleinigen Ausführer, um Codeduplikate zu vermeiden.
 
 **Auto-Befüllung ohne Recherche:** Schon aus einem nackten Kader (nur `team`/`pos`
 je Spieler) füllt der Runner `team_ausrichtung`, `team_staerken`/`-schwaechen`,
@@ -90,7 +95,8 @@ Woche-1-Preseason-Fallback möglich) bleiben eingabe-/saisonabhängig.
 
 ```bash
 # Beste Aufstellung fuer eine Woche berechnen (End-to-End):
-python tools/run_week.py --input tools/examples/team-r4ph4.week1.input.json \
+python .github/skills/fantasy-lineup-coordinator/tools/run_week.py \
+    --input tools/examples/team-r4ph4.week1.input.json \
     --report-dir ./temp/reports --out-dir . --as-of 2026-09-03T21:00:00+02:00
 
 ```
@@ -106,8 +112,9 @@ mit Scout-Zusammenfassung und Begründung je Spieler) und
 Alle Skills/Agenten legen temporäre bzw. autogenerierte Zwischendateien
 (Roh-Reports, abgeleitete Eingabe-JSONs) unter `temp/` ab. Der Ordner ist in
 `.gitignore` ausgeschlossen und wird von
-[cleanup_generated.py](./tools/cleanup_generated.py) mitgeräumt. Finale
-Reports/Bundles bleiben auf oberster Ebene und werden nicht angefasst.
+[cleanup_generated.py](./.github/skills/fantasy-manager-cleanup/tools/cleanup_generated.py)
+mitgeräumt. Finale Reports/Bundles bleiben auf oberster Ebene und werden nicht
+angefasst.
 
 ## Reproduzierbarkeit (kein Cache)
 
@@ -117,7 +124,7 @@ Reports/Bundles bleiben auf oberster Ebene und werden nicht angefasst.
   Es wird nie ungeprüft ein alter Report wiederverwendet.
 - **`content_hash`:** Prüfsumme über den Faktenteil (ohne `meta`/`generated_at`).
   Gleiche Eingaben/Quellen → gleicher Hash; nur `generated_at` variiert.
-- Prüfen: `python tools/report_cache.py verify --path <report>`.
+- Prüfen: `python .github/skills/fantasy-lineup-coordinator/tools/report_cache.py verify --path <report>`.
 
 ## Datenquellen-Grundsätze
 
