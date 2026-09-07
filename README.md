@@ -97,15 +97,15 @@ Woche-1-Preseason-Fallback möglich) bleiben eingabe-/saisonabhängig.
 # Beste Aufstellung fuer eine Woche berechnen (End-to-End):
 python .github/skills/fantasy-lineup-coordinator/tools/run_week.py \
     --input tools/examples/team-r4ph4.week1.input.json \
-    --report-dir ./temp/reports --out-dir . --as-of 2026-09-03T21:00:00+02:00
+    --report-dir ./temp/reports --out-dir . --json-dir ./temp --as-of 2026-09-03T21:00:00+02:00
 
 ```
 
-Ergebnis auf oberster Ebene (finaler Report): `lineup-<team>-w<n>.md` (+ `.json`,
-mit Scout-Zusammenfassung und Begründung je Spieler) und
-`evaluations-<team>-w<n>.json` (Effektivität, Floor/Ceiling, Konfidenz und
-4–6-Satz-Rationale je Spieler); temporäre Spieler-Reports in
-`./temp/reports/<report_id>.json`.
+Ergebnis auf oberster Ebene (finaler Report): `lineup-<team>-w<n>.md` (mit
+Scout-Zusammenfassung und Begründung je Spieler). Die maschinenlesbaren
+Begleitdateien `lineup-<team>-w<n>.json` und `evaluations-<team>-w<n>.json`
+(Effektivität, Floor/Ceiling, Konfidenz, 4–6-Satz-Rationale je Spieler) sowie
+die temporären Spieler-Reports landen in `./temp/`.
 
 ## Ordner `temp/`
 

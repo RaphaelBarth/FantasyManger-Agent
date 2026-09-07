@@ -29,8 +29,7 @@ Nicht gelöscht werden:
 
 - `.github/skills/**`
 - `.github/modernize/**`
-- Finale Reports/Bundles auf oberster Ebene (`lineup-*.md`, `lineup-*.json`,
-  `evaluations-*.json`)
+- Finale Reports auf oberster Ebene (`lineup-*.md`)
 - `roster-*.md`, `league-config-*.md`
 - README- und Konfigurationsdateien
 - beliebige Ordner außerhalb des Projektstamms

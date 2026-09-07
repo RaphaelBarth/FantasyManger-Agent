@@ -99,13 +99,13 @@ eignungsfähige Slots). Es wird **exakt** über den Ungarischen Algorithmus
 Ausführbar über den End-to-End-Runner:
 
 ```
-python tools/run_week.py --input woche.json --report-dir ./temp/reports --out-dir . --as-of <ISO>
+python tools/run_week.py --input woche.json --report-dir ./temp/reports --out-dir . --json-dir ./temp --as-of <ISO>
 ```
 
 Der Runner kettet: pro Spieler frischer Report (kein Cache, jeder Lauf zieht
 neu) → Effektivität `E` (= Startwert, inkl. Verfügbarkeits-Gate) → exakte
-Slot-Zuordnung → Scout-Schwächen → Bundle (`lineup-*.json` gegen `tools/schemas/lineup.schema.json`
-validierbar, plus `lineup-*.md`). Zusätzlich wird die „falls QUES aktiv"-
+Slot-Zuordnung → Scout-Schwächen → Bundle (`temp/lineup-*.json` gegen `tools/schemas/lineup.schema.json`
+validierbar, plus finales `lineup-*.md` auf oberster Ebene). Zusätzlich wird die „falls QUES aktiv"-
 Alternative berechnet und als Monitor ausgewiesen.
 
 **Team-/Gegnerprofil in den Reports:** Der Runner lädt automatisch die **gebündelte

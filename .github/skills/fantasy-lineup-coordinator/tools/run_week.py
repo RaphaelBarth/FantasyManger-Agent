@@ -825,8 +825,10 @@ def run(args):
     }
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    json_dir = Path(args.json_dir)
+    json_dir.mkdir(parents=True, exist_ok=True)
     stem = "lineup-{}-w{}".format(fmlib.slugify(team), week)
-    (out_dir / (stem + ".json")).write_text(
+    (json_dir / (stem + ".json")).write_text(
         json.dumps(lineup_obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (out_dir / (stem + ".md")).write_text(
         to_markdown(team, week, as_of, scoring, base, players_by_id, notes, diffs,
@@ -840,7 +842,7 @@ def run(args):
                        "evaluation": p.get("evaluation", {}),
                        "rationale": rationale_by_id.get(p["id"])}
              for p in players}
-    (out_dir / ("evaluations-{}-w{}.json".format(fmlib.slugify(team), week))).write_text(
+    (json_dir / ("evaluations-{}-w{}.json".format(fmlib.slugify(team), week))).write_text(
         json.dumps(evals, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(json.dumps({
@@ -851,7 +853,8 @@ def run(args):
         "reports": {"generated": len(data["players"]),
                     "schema_invalid": len(invalid),
                     "incomplete": incomplete_count},
-        "out": str(out_dir / (stem + ".json")),
+        "out": str(out_dir / (stem + ".md")),
+        "out_json": str(json_dir / (stem + ".json")),
     }, ensure_ascii=False, indent=2))
     if invalid:
         print("WARN: schema-invalide Reports:\n" +
@@ -864,6 +867,7 @@ def main(argv=None):
     p.add_argument("--input", required=True)
     p.add_argument("--report-dir", default="./temp/reports")
     p.add_argument("--out-dir", default=".")
+    p.add_argument("--json-dir", default="./temp")
     p.add_argument("--as-of", default=None)
     p.add_argument("--season", default=None)
     p.add_argument("--no-default-profiles", dest="no_default_profiles",
