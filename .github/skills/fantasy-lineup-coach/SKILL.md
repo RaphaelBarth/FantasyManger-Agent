@@ -112,7 +112,10 @@ eignungsfähige Slots). Es wird **exakt** über den Ungarischen Algorithmus
 (Kuhn-Munkres) gelöst — implementiert in [tools/fmlib.py](./tools/fmlib.py)
 (`optimize_lineup`). Kein manueller Swap-Check nötig.
 
-Ausführbar über das schlanke Coach-Skript (**kein** vollständiger Pipeline-Runner —
+Ausführbar über das schlanke Coach-Skript — dieser Aufruf ist ein internes
+Implementierungsdetail des Skills und wird vom `fantasy-manager-agent` als
+letzter Pipeline-Schritt angestoßen, **kein manueller Einzelaufruf** für den
+Nutzer (**kein** vollständiger Pipeline-Runner —
 es ruft keine Web-Recherche auf und erzeugt/bewertet keine Reports selbst):
 
 ```

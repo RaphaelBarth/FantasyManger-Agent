@@ -38,28 +38,21 @@ Cleanup ─▶ Supporter ─▶ Evaluator ─▶ Scout ─▶ Coach
 Regelbasis (Slots, Scoring, Waiver/FAAB, Trades):
 [SleeperFantasyManager.md](./.github/skills/fantasy-lineup-coach/SleeperFantasyManager.md).
 
-## Schnellstart
+## Nutzung
 
-Der Coach bekommt **keine rohen Kaderdaten**, sondern die fertigen Ergebnisse
-von Supporter, Evaluator und Scout (vom Agenten zusammengestellt):
-
-```bash
-python .github/skills/fantasy-lineup-coach/tools/coach_assign.py \
-    --input woche.coach-input.json \
-    --out-dir . --json-dir ./temp --as-of 2026-09-03T21:00:00+02:00
-```
-
-`woche.coach-input.json` enthält je Spieler `proj`/`gate`/`tilt` +
-`evaluation` (vom Evaluator) sowie den vollen Supporter-`report`
-(Verletzung, Team-/Gegner-Ausrichtung, Stärken, News), dazu ein kaderweites
-`scout_summary` vom Scout-Skill. Das Coach-Skript macht **nur** noch die
-Slot-Zuordnung (Ungarischer Algorithmus) und fasst alles zu einem
-Abschlussreport zusammen — kein eigenes Fetching, keine eigene Bewertung.
+Es gibt **keinen direkten Skript-Aufruf für dich als Nutzer** — die gesamte
+Logik und der Ablauf laufen ausschließlich über den
+[fantasy-manager-agent](./.github/agents/fantasy-manager-agent.agent.md). Du
+stellst eine Anfrage (z. B. "stelle das beste Team für Woche 1 auf"); der
+Agent routet sie durch die feste Pipeline (Cleanup → Supporter → Evaluator →
+Scout → Coach) und liefert das Ergebnis. Die `tools/`-Skripte je Skill
+(z. B. `coach_assign.py`) sind interne Implementierungsdetails, die der Agent
+bzw. die Skills selbst aufrufen — nicht für manuelle Einzelaufrufe gedacht.
 
 Ergebnis auf oberster Ebene: `lineup-<team>-w<n>.md` (finaler Report, mit
-Scout-Zusammenfassung und Begründung je Spieler). Die maschinenlesbare
-Begleitdatei `lineup-*.json` landet in `./temp/` — dieser Ordner ist in
-`.gitignore` ausgeschlossen und wird vom Cleanup-Skill geleert.
+Scout-Zusammenfassung und Begründung je Spieler). Maschinenlesbare
+Begleitdateien landen in `./temp/` — dieser Ordner ist in `.gitignore`
+ausgeschlossen und wird vom Cleanup-Skill geleert.
 
 ## Grundsätze
 
