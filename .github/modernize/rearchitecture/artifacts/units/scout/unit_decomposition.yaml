@@ -1,4 +1,0 @@
-unit: scout
-commit: false
-candidate_splits:
-  - {name: "waiver search vs trade board", drivers: ["different candidate pools", "different market signals"], rationale: "both share need analysis and evaluator facts"}

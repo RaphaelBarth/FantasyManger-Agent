@@ -1,9 +1,0 @@
-unit: evaluator
-side_effects:
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:147, action: "renormalize weights when factors lack evidence", must_preserve: true}
-branches:
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:42, condition: "factor unsupported", outcome: "exclude rather than neutral default", must_preserve: true}
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:46, condition: "report older than one hour", outcome: "request fresh supporter report", must_preserve: true}
-error_paths:
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:34, contract: "missing report requires supporter first", must_preserve: true}
-concurrency: {model: "pure deterministic calculation", tx_boundary: null}

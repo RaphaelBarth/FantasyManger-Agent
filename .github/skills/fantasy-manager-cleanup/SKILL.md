@@ -28,7 +28,6 @@ des Projektstamms gelöscht werden, deren Name einem dieser Muster entspricht:
 Nicht gelöscht werden:
 
 - `.github/skills/**`
-- `.github/modernize/**`
 - Finale Reports auf oberster Ebene (`lineup-*.md`)
 - `roster-*.md`, `league-config-*.md`
 - README- und Konfigurationsdateien

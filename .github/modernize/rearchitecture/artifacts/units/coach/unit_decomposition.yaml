@@ -1,4 +1,0 @@
-unit: coach
-commit: false
-candidate_splits:
-  - {name: "evaluator batch vs assignment", drivers: ["per-player work versus global constraint solve"], rationale: "separate orchestration phases with different correctness properties"}

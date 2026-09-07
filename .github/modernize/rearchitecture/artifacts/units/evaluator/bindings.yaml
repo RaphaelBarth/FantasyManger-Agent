@@ -1,5 +1,0 @@
-unit: evaluator
-bindings:
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:18, trigger: "finished supporter report", must_appear_in_target: true}
-runtime_config:
-  - {source_loc: .github/skills/fantasy-effectiveness-evaluator/SKILL.md:26, key: "report, scoring, horizon", must_appear_in_target: true}

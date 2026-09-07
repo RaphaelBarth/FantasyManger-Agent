@@ -1,5 +1,0 @@
-unit: scout
-bindings:
-  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:24, trigger: "supporter facts plus evaluator results", must_appear_in_target: true}
-runtime_config:
-  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:35, key: "roster, free_agents, other_rosters, mode, week, scoring, faab_budget, as_of", must_appear_in_target: true}

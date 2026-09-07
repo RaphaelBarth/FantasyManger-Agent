@@ -1,4 +1,0 @@
-unit: collector
-commit: false
-candidate_splits:
-  - {name: "player retrieval vs team retrieval", drivers: ["different target shape"], rationale: "both are currently one public collection boundary"}

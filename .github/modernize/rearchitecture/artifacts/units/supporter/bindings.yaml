@@ -1,6 +1,0 @@
-unit: supporter
-bindings:
-  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:64, trigger: "collector raw package", must_appear_in_target: true}
-  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:70, trigger: "team analysis before specialist fragments", must_appear_in_target: true}
-runtime_config:
-  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:47, key: "subject, season, week, as_of, report_dir", must_appear_in_target: true}

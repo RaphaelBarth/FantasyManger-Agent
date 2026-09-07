@@ -1,4 +1,0 @@
-unit: evaluator
-commit: false
-candidate_splits:
-  - {name: "availability gate vs factor model", drivers: ["gate is a hard availability multiplier"], rationale: "separate testing seam without changing public evaluation"}
