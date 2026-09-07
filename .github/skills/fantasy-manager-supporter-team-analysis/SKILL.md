@@ -70,17 +70,10 @@ und den Teamkontext eines Spielers zu bestätigen. Für **Scheme-Fakten** (HC/OC
 DC, Grundschema, Tendenzen) ist Sleeper keine Primärquelle; dafür gelten die
 Quellen unten.
 
-## Gebündelte Wissensbasis (Offline-Fallback)
-
-Die Tools bringen eine recherchierte Basis-Ausrichtung + Stärken/Schwächen für
-alle NFL-Teams mit: [tools/team_profiles.default.json](../fantasy-lineup-coach/tools/team_profiles.default.json)
-und den Spielplan [tools/schedule.default.json](../fantasy-lineup-coach/tools/schedule.default.json).
-Diese werden vom Offline-Runner der `fantasy-lineup-coach`-Tools
-(`tools/run_week.py` im `fantasy-lineup-coach`-Skill) automatisch geladen, wenn keine Recherche stattfindet.
-keine Recherche stattfindet. Dieser Skill soll bei einer **echten Recherche**
-diese Basis nach Möglichkeit **verifizieren/aktualisieren** (Coordinators und
-Schemes ändern sich) statt sie blind zu wiederholen; ein aktuell recherchierter
-Fakt überschreibt immer den Default.
+Dieser Skill ist die **einzige Quelle** für Team-/Gegner-Ausrichtung und
+-Stärken/-Schwächen — es gibt keine gebündelte Offline-Wissensbasis, aus der
+ein Tool diese Felder automatisch befüllt. Fehlt eine echte Recherche, bleibt
+das Feld leer und wird als Datenlücke ausgewiesen statt geraten.
 
 ## Quellenstrategie
 

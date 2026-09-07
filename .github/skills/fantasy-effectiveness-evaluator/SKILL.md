@@ -223,9 +223,9 @@ Datenlücke. Nur Report-Fakten, keine Erfindungen.
 ```
 
 Keine Zusatzabschnitte; keine erfundenen Statistiken; keine Wett- oder
-Gesundheitsaussagen. Der Runner erzeugt die 4–6-Satz-Begründung deterministisch
-(`evaluation_rationale` in [tools/run_week.py](../fantasy-lineup-coach/tools/run_week.py)) und legt sie
-je Spieler in `evaluations-*.json` ab.
+Gesundheitsaussagen. Die 4–6-Satz-Begründung wird von diesem Skill selbst je
+Spieler erzeugt (nicht vom Coach) und dem Coach als Teil der Evaluation
+übergeben.
 
 ## Ablauf
 

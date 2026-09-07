@@ -188,22 +188,9 @@ python ../fantasy-lineup-coach/tools/report_cache.py validate --path report.json
 ```
 
 Bevorzugt wird das **JSON-Format** (maschinenlesbar, schema-validiert), das
-Evaluator und Coordinator direkt konsumieren. Der `content_hash` deckt nur den
+Evaluator und Coach direkt konsumieren. Der `content_hash` deckt nur den
 Faktenteil ab (ohne `meta`/`generated_at`), sodass identische
 Subskill-Ergebnisse nachweisbar identische Reports liefern.
-
-## Gebündelte Auto-Befüllung im Offline-Runner
-
-[tools/run_week.py](../fantasy-lineup-coach/tools/run_week.py) (End-to-End-Runner
-des `fantasy-lineup-coach`-Skills, ohne Live-
-Recherche) füllt Team-/Gegner-**Ausrichtung** sowie **Stärken/Schwächen** und
-den **nächsten Gegner** bereits aus der mitgelieferten Wissensbasis
-([team_profiles.default.json](../fantasy-lineup-coach/tools/team_profiles.default.json)) und dem
-Spielplan ([schedule.default.json](../fantasy-lineup-coach/tools/schedule.default.json)) — das
-entspricht funktional dem, was der Team-Auswertung-Subskill bei Live-Recherche
-liefert. Läuft dieser Skill mit echter Recherche, **überschreiben** seine
-Ergebnisse die Defaults; nur `news` (Live-Feed) und Saisonstatistik bleiben in
-jedem Fall recherche-/saisonabhängig.
 
 ## Verbindliches Ausgabeformat
 

@@ -59,6 +59,11 @@ scoring: standard|half-ppr|ppr|custom — optional (an Sub-Skill 2 durchreichen)
 as_of: ISO-8601-Zeitpunkt — optional; Standard jetzt
 ```
 
+Je Kaderspieler zusätzlich (vom Top-Level-Agenten aus Supporter + Evaluator
+zusammengestellt, siehe `tools/coach_assign.py`): `proj`/`gate`/`tilt`,
+`evaluation` und der volle Supporter-`report`. Kader-weit zusätzlich das
+`scout_summary` vom Scout-Skill.
+
 Fehlen `slots`, aus der Ligakonfiguration bzw. dem Kader-Screenshot übernehmen
 (z. B. QB, RB×2, WR×3, TE×2, W/R/T-Flex, W/R/T/Q-Superflex, K, DEF); Slot-,
 Scoring- und Roster-Regeln (Bye, IR, Lineup-Lock bei Spielbeginn) folgen der
@@ -89,7 +94,9 @@ werden analog nach ihrer erlaubten Menge behandelt.
    Verfügbarkeit. So bleibt der Wert **positionsübergreifend punktvergleichbar**
    (ein 90er-Kicker schlägt keinen 80er-QB im Superflex), während die
    Evaluator-Einschätzung ihn kalibriert. Umgesetzt in
-   [tools/run_week.py](./tools/run_week.py) via `fmlib.evaluate` + `quality_tilt`.
+   [tools/coach_assign.py](./tools/coach_assign.py) via einfache Multiplikation
+   der bereits vom Evaluator gelieferten Werte (`proj`, `tilt`, `gate`) — der
+   Coach bewertet nicht selbst neu.
    - Spieler mit Bye in dieser Woche oder Gate 0 (Out/IR) sind **nicht
      startbar** und werden ausgeschlossen.
 3. **Optimierung** (siehe unten): Zuordnung Spieler → Slots, die die Summe der
@@ -105,34 +112,28 @@ eignungsfähige Slots). Es wird **exakt** über den Ungarischen Algorithmus
 (Kuhn-Munkres) gelöst — implementiert in [tools/fmlib.py](./tools/fmlib.py)
 (`optimize_lineup`). Kein manueller Swap-Check nötig.
 
-Ausführbar über den End-to-End-Runner:
+Ausführbar über das schlanke Coach-Skript (**kein** vollständiger Pipeline-Runner —
+es ruft keine Web-Recherche auf und erzeugt/bewertet keine Reports selbst):
 
 ```
-python tools/run_week.py --input woche.json --report-dir ./temp/reports --out-dir . --json-dir ./temp --as-of <ISO>
+python tools/coach_assign.py --input woche.json --out-dir . --json-dir ./temp --as-of <ISO>
 ```
 
-Der Runner kettet: pro Spieler frischer Report (kein Cache, jeder Lauf zieht
-neu) → Effektivität `E` (= Startwert, inkl. Verfügbarkeits-Gate) → exakte
-Slot-Zuordnung → Scout-Schwächen → Bundle (`temp/lineup-*.json` gegen `tools/schemas/lineup.schema.json`
-validierbar, plus finales `lineup-*.md` auf oberster Ebene). Zusätzlich wird die „falls QUES aktiv"-
-Alternative berechnet und als Monitor ausgewiesen.
+`woche.json` enthält bereits **fertige** Ergebnisse der vorgelagerten Skills —
+keine rohen Kaderdaten. Struktur je Spieler: `proj`/`gate`/`tilt` (vom
+Evaluator berechnet), `evaluation` (Effektivität/Floor/Ceiling/Konfidenz vom
+Evaluator) und `report` (der volle Supporter-Report: Verletzung,
+Team-/Gegner-Ausrichtung, Stärken, News, `completeness`). Zusätzlich ein
+Kader-weites `scout_summary` vom Scout-Skill. Der Coach führt daraus **nur**
+die Slot-Zuordnung (Ungarischer Algorithmus) und die Fließtext-Begründungen je
+Spieler durch und schreibt das Bundle (`temp/lineup-*.json` gegen
+`tools/schemas/lineup.schema.json` validierbar, plus finales `lineup-*.md` auf
+oberster Ebene). Zusätzlich wird die „falls QUES aktiv"-Alternative berechnet
+und als Monitor ausgewiesen.
 
-**Team-/Gegnerprofil in den Reports:** Der Runner lädt automatisch die **gebündelte
-Liga-Wissensbasis** ([tools/team_profiles.default.json](./tools/team_profiles.default.json):
-Team-Ausrichtung + recherchierte Stärken/Schwächen je NFL-Team) und den
-**Spielplan** ([tools/schedule.default.json](./tools/schedule.default.json)). Damit
-werden schon aus einem nackten Kader `team_orientation` (eigenes Team),
-`team_strengths`/`team_weaknesses`, der nächste Gegner (via Spielplan, wenn kein
-`opp` gesetzt ist) sowie `next_opponent.orientation`/`strengths`/`weaknesses`
-befüllt. Enthält die Wocheneingabe einen `team_profiles`-Block bzw. ein `opp`-Feld,
-**überschreibt die Eingabe die Defaults** pro Team (flacher Merge je Teamcode);
-mit `--no-default-profiles` lassen sich die Defaults abschalten. Fehlt trotz allem
-ein Profil, wird es **ehrlich als Datenlücke** vermerkt — nichts wird erfunden. Nur
-`news` (Live-Sleeper-Feed) und die Saisonstatistik (ab Woche 1 erst nach Spielen,
-Woche-1-Preseason-Fallback möglich) bleiben eingabe-/saisonabhängig. Diese
-Snapshot-Reports (`report_kind: "snapshot"`) sind bewusst schlanker als die voll
-recherchierten Supporter-Reports; jeder geschriebene Report wird gegen
-`tools/schemas/report.schema.json` validiert (`reports.schema_invalid`).
+Fehlt einem Spieler-Report ein Feld (`report.completeness.missing`), wird das
+**ehrlich als Datenlücke** im Abschlussreport ausgewiesen — der Coach
+recherchiert nichts nach und erfindet nichts.
 
 Konzeptuell entspricht das:
 1. Kandidatenmenge je Slot nach Eignung bilden; nicht startbare (Bye/Out) entfernen.

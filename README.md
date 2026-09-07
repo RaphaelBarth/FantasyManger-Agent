@@ -40,18 +40,25 @@ Regelbasis (Slots, Scoring, Waiver/FAAB, Trades):
 
 ## Schnellstart
 
+Der Coach bekommt **keine rohen Kaderdaten**, sondern die fertigen Ergebnisse
+von Supporter, Evaluator und Scout (vom Agenten zusammengestellt):
+
 ```bash
-python .github/skills/fantasy-lineup-coach/tools/run_week.py \
-    --input woche.input.json \
-    --report-dir ./temp/reports --out-dir . --json-dir ./temp --as-of 2026-09-03T21:00:00+02:00
+python .github/skills/fantasy-lineup-coach/tools/coach_assign.py \
+    --input woche.coach-input.json \
+    --out-dir . --json-dir ./temp --as-of 2026-09-03T21:00:00+02:00
 ```
 
-`woche.input.json` fasst Kader + Liga-Konfiguration für die aktuelle Woche
-maschinenlesbar zusammen (der Agent leitet es aus deinen `roster-*.md`/
-`league-config-*.md`-Dateien ab). Ergebnis auf oberster Ebene: `lineup-<team>-w<n>.md`
-(finaler Report, mit Scout-Zusammenfassung und Begründung je Spieler).
-Maschinenlesbare Begleitdateien (`lineup-*.json`, `evaluations-*.json`) und
-alle temporären Spieler-Reports landen in `./temp/` — dieser Ordner ist in
+`woche.coach-input.json` enthält je Spieler `proj`/`gate`/`tilt` +
+`evaluation` (vom Evaluator) sowie den vollen Supporter-`report`
+(Verletzung, Team-/Gegner-Ausrichtung, Stärken, News), dazu ein kaderweites
+`scout_summary` vom Scout-Skill. Das Coach-Skript macht **nur** noch die
+Slot-Zuordnung (Ungarischer Algorithmus) und fasst alles zu einem
+Abschlussreport zusammen — kein eigenes Fetching, keine eigene Bewertung.
+
+Ergebnis auf oberster Ebene: `lineup-<team>-w<n>.md` (finaler Report, mit
+Scout-Zusammenfassung und Begründung je Spieler). Die maschinenlesbare
+Begleitdatei `lineup-*.json` landet in `./temp/` — dieser Ordner ist in
 `.gitignore` ausgeschlossen und wird vom Cleanup-Skill geleert.
 
 ## Grundsätze
