@@ -1,0 +1,8 @@
+unit: collector
+side_effects:
+  - {source_loc: .github/skills/sleeper-nfl-data-collector/SKILL.md:58, action: "record URL, filters and retrieval time", must_preserve: true}
+branches:
+  - {source_loc: .github/skills/sleeper-nfl-data-collector/SKILL.md:62, condition: "field unavailable or protected", outcome: "explicit unavailable marker", must_preserve: true}
+error_paths:
+  - {source_loc: .github/skills/sleeper-nfl-data-collector/SKILL.md:160, contract: "respect 401/403/429/5xx and stop or back off", must_preserve: true}
+concurrency: {model: "sequential page/detail retrieval", tx_boundary: null}

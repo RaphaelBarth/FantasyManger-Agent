@@ -1,0 +1,4 @@
+unit: runner
+commit: false
+candidate_splits:
+  - {name: "report generation vs lineup bundle", drivers: ["artifact lifecycle", "machine schema versus explanation"], rationale: "both are currently coordinated by the CLI"}

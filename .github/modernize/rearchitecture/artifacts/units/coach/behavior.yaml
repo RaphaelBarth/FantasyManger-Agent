@@ -1,0 +1,9 @@
+unit: coach
+side_effects:
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:104, action: "assign each eligible player to at most one slot", must_preserve: true}
+branches:
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:102, condition: "bye or gate 0", outcome: "exclude from starters", must_preserve: true}
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:106, condition: "structural weakness", outcome: "invoke scout separately", must_preserve: true}
+error_paths:
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:61, contract: "missing slots must be resolved from league configuration or supplied context", must_preserve: true}
+concurrency: {model: "parallel per-player reports, then global assignment", tx_boundary: "lineup bundle"}

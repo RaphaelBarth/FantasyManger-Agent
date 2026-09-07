@@ -1,0 +1,22 @@
+flows:
+  - source_loc: tools/run_week.py:396
+    name: report_directory_refresh
+    producer: runner
+    consumer: supporter
+    pairing: matched
+    must_preserve: true
+    verification_hint: "same run clears requested report directory before fresh report generation"
+  - source_loc: tools/fmlib.py:87
+    name: content_hash_lifecycle
+    producer: supporter
+    consumer: runner
+    pairing: matched
+    must_preserve: true
+    verification_hint: "hash excludes volatile metadata but changes when fact content changes"
+  - source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:106
+    name: weakness_to_scout_trigger
+    producer: coach
+    consumer: scout
+    pairing: matched
+    must_preserve: true
+    verification_hint: "scout is optional and must not alter the current lineup retroactively"

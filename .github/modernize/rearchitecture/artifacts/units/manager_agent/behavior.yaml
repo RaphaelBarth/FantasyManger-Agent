@@ -1,0 +1,9 @@
+unit: manager_agent
+side_effects:
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:20, action: "route request and combine specialist results", must_preserve: true}
+branches:
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:39, condition: "request type", outcome: "invoke only required specialist skills", must_preserve: true}
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:46, condition: "structural roster weakness", outcome: "invoke scout separately", must_preserve: true}
+error_paths:
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:50, contract: "missing/protected data remains an explicit gap", must_preserve: true}
+concurrency: {model: "route-dependent; independent player evaluations may run in parallel", tx_boundary: "final response or weekly bundle"}

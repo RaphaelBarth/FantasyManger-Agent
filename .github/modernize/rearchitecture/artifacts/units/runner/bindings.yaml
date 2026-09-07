@@ -1,0 +1,6 @@
+unit: runner
+bindings:
+  - {source_loc: tools/run_week.py:9, trigger: "JSON input with roster, slots and players", must_appear_in_target: true}
+  - {source_loc: tools/report_cache.py:131, trigger: "report CLI commands", must_appear_in_target: true}
+runtime_config:
+  - {source_loc: tools/run_week.py:865, key: "--input, --report-dir, --out-dir, --as-of, --no-default-profiles", must_appear_in_target: true}

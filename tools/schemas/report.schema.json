@@ -1,0 +1,479 @@
+{
+  "type": "object",
+  "required": [
+    "subject",
+    "kind",
+    "season",
+    "as_of",
+    "stats",
+    "sources"
+  ],
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "player",
+        "team"
+      ]
+    },
+    "position": {
+      "type": "string"
+    },
+    "nfl_team": {
+      "type": "string"
+    },
+    "season": {
+      "type": "integer"
+    },
+    "week": {
+      "type": "integer"
+    },
+    "as_of": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "report_id": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "games": {
+          "type": "integer"
+        },
+        "starts": {
+          "type": "integer"
+        },
+        "season_data_available": {
+          "type": "boolean"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "totals": {
+          "type": "object"
+        },
+        "game_log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "week"
+            ],
+            "properties": {
+              "week": {
+                "type": "integer"
+              },
+              "opponent": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "data_basis": {
+      "type": "object",
+      "properties": {
+        "saison_statistik": {
+          "type": "string"
+        },
+        "gegner_statistik": {
+          "type": "string"
+        },
+        "spieler_staerken": {
+          "type": "string"
+        }
+      }
+    },
+    "injury": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "practice": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "team_orientation": {
+      "type": "object",
+      "properties": {
+        "offense": {
+          "type": "string"
+        },
+        "defense": {
+          "type": "string"
+        },
+        "preferred_player_types": {
+          "type": "string"
+        }
+      }
+    },
+    "team_strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "source"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "offense",
+              "defense",
+              "neutral",
+              "special"
+            ]
+          }
+        }
+      }
+    },
+    "team_weaknesses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "source"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "offense",
+              "defense",
+              "neutral",
+              "special"
+            ]
+          }
+        }
+      }
+    },
+    "additional_information": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "note"
+        ],
+        "properties": {
+          "note": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "news": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "headline",
+          "feed_source"
+        ],
+        "properties": {
+          "headline": {
+            "type": "string"
+          },
+          "feed_source": {
+            "type": "string"
+          },
+          "outlet": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "confirmed": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "player_strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "source"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "offense",
+              "defense",
+              "neutral",
+              "special"
+            ]
+          }
+        }
+      }
+    },
+    "next_opponent": {
+      "type": "object",
+      "properties": {
+        "opponent": {
+          "type": "string"
+        },
+        "home_away": {
+          "type": "string",
+          "enum": [
+            "home",
+            "away",
+            "bye"
+          ]
+        },
+        "date": {
+          "type": "string"
+        },
+        "bye": {
+          "type": "boolean"
+        },
+        "opponent_stats": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "claim",
+              "source"
+            ],
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "source": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "offense",
+                  "defense",
+                  "neutral",
+                  "special"
+                ]
+              }
+            }
+          }
+        },
+        "weaknesses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "claim",
+              "source"
+            ],
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "rank": {
+                "type": "integer"
+              },
+              "source": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "offense",
+                  "defense",
+                  "neutral",
+                  "special"
+                ]
+              }
+            }
+          }
+        },
+        "orientation": {
+          "type": "object",
+          "properties": {
+            "offense": {
+              "type": "string"
+            },
+            "defense": {
+              "type": "string"
+            },
+            "preferred_player_types": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        },
+        "present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "season_dependent_missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "published": {
+            "type": "string"
+          },
+          "retrieved_at": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

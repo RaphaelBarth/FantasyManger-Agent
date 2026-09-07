@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "required": ["subject", "report_id", "effectiveness", "gate", "confidence", "factors"],
+  "properties": {
+    "subject": { "type": "string" },
+    "report_id": { "type": "string" },
+    "as_of": { "type": "string" },
+    "scoring": { "type": "string" },
+    "horizon": { "type": "string", "enum": ["next_game", "season"] },
+    "effectiveness": { "type": "number" },
+    "gate": { "type": "number" },
+    "tier": { "type": "string", "enum": ["sehr niedrig", "niedrig", "mittel", "hoch", "sehr hoch"] },
+    "confidence": { "type": "string", "enum": ["niedrig", "mittel", "hoch"] },
+    "rationale": { "type": "string" },
+    "factors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "weight"],
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "number" },
+          "weight": { "type": "number" },
+          "evidence": { "type": "string" }
+        }
+      }
+    },
+    "data_gaps": { "type": "array", "items": { "type": "string" } }
+  }
+}

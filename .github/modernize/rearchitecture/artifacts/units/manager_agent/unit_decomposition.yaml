@@ -1,0 +1,4 @@
+unit: manager_agent
+commit: false
+candidate_splits:
+  - {name: "request router vs result composer", drivers: ["routing policy", "response consistency"], rationale: "top-level orchestration and final presentation have separate responsibilities"}

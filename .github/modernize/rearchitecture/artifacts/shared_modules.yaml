@@ -1,0 +1,48 @@
+shared_modules:
+  - name: report_identity
+    path: tools/fmlib.py:45
+    kind: "shared deterministic helper"
+    used_by_units: [supporter, evaluator, scout, runner]
+    fields:
+      - {name: report_id, type: string}
+      - {name: generated_at, type: iso_datetime}
+      - {name: content_hash, type: sha256}
+    used_fields_by_unit:
+      supporter: [report_id, generated_at, content_hash]
+      evaluator: [generated_at]
+      scout: [generated_at]
+      runner: [report_id, generated_at, content_hash]
+    split_candidate: "keep shared; changing identity semantics breaks reproducibility"
+  - name: injury_gate
+    path: tools/fmlib.py:105
+    kind: "availability policy"
+    used_by_units: [evaluator, runner]
+    fields:
+      - {name: status, type: string}
+      - {name: practice, type: string}
+      - {name: gate, type: number}
+    used_fields_by_unit:
+      evaluator: [status, practice, gate]
+      runner: [gate]
+    split_candidate: "extract only if multiple scoring policies are introduced"
+  - name: lineup_optimizer
+    path: tools/fmlib.py:175
+    kind: "assignment algorithm"
+    used_by_units: [coach, runner]
+    fields:
+      - {name: eligible_slots, type: array}
+      - {name: start_value, type: number}
+      - {name: assignment, type: mapping}
+    used_fields_by_unit:
+      coach: [eligible_slots, start_value, assignment]
+      runner: [assignment]
+    split_candidate: "keep shared; coach and CLI must produce identical assignments"
+  - name: schema_validation
+    path: tools/fmlib.py:135
+    kind: "output validation"
+    used_by_units: [runner]
+    fields:
+      - {name: errors, type: array}
+    used_fields_by_unit:
+      runner: [errors]
+    split_candidate: "none"

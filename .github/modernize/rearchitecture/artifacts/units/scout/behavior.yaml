@@ -1,0 +1,9 @@
+unit: scout
+side_effects:
+  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:77, action: "rank candidates and produce FAAB/add-drop suggestions", must_preserve: true}
+branches:
+  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:35, condition: "mode sleepers/trades/both", outcome: "select corresponding candidate pipeline", must_preserve: true}
+  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:38, condition: "free_agents absent", outcome: "request or load candidate pool", must_preserve: true}
+error_paths:
+  - {source_loc: .github/skills/fantasy-opportunity-scout/SKILL.md:122, contract: "recommendations are not guarantees and no values are invented", must_preserve: true}
+concurrency: {model: "candidate evaluation can be parallel; ranking is ordered", tx_boundary: null}

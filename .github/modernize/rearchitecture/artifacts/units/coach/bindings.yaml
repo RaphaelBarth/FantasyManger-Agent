@@ -1,0 +1,5 @@
+unit: coach
+bindings:
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:34, trigger: "roster request", must_appear_in_target: true}
+runtime_config:
+  - {source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:51, key: "roster, slots, week, scoring, as_of", must_appear_in_target: true}

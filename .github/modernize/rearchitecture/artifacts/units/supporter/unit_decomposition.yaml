@@ -1,0 +1,4 @@
+unit: supporter
+commit: false
+candidate_splits:
+  - {name: "specialist fragments", drivers: ["separate source domains", "parallel retrieval"], rationale: "already represented by independently callable subskills"}

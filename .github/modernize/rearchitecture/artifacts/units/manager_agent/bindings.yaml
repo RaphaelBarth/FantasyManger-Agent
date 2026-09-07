@@ -1,0 +1,5 @@
+unit: manager_agent
+bindings:
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:1, trigger: "any general Fantasy Manager request", must_appear_in_target: true}
+runtime_config:
+  - {source_loc: .github/agents/fantasy-manager-agent.agent.md:31, key: "request, subject, roster, week, scoring, desired output", must_appear_in_target: true}

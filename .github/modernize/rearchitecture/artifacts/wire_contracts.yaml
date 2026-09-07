@@ -1,0 +1,29 @@
+contracts:
+  - source_loc: .github/skills/sleeper-nfl-data-collector/SKILL.md:127
+    kind: json
+    stability: frozen
+    producer: collector
+    consumer: supporter
+    target_contract: "subject, context, access, identity, status, statistics, game_log, rankings_projections_ownership, schedule, news, team_context, unavailable, sources, quality"
+    semantic_divergence: "public availability and missing fields must remain explicit"
+  - source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:205
+    kind: json
+    stability: frozen
+    producer: supporter
+    consumer: evaluator
+    target_contract: "report contains uniform sections; missing evidence is represented as data_gaps/completeness, never inferred"
+    semantic_divergence: "current-season boundary and week-1 preseason exception are meaningful"
+  - source_loc: .github/skills/fantasy-lineup-coordinator/SKILL.md:117
+    kind: internal
+    stability: frozen
+    producer: evaluator
+    consumer: coach
+    target_contract: "evaluation includes effectiveness, gate, floor, ceiling, confidence and factor evidence"
+    semantic_divergence: "gate 0 and bye make a player non-startable"
+  - source_loc: tools/schemas/lineup.schema.json:1
+    kind: json
+    stability: frozen
+    producer: runner
+    consumer: downstream output
+    target_contract: "validated lineup JSON with starters, bank, reasons and scout summary"
+    semantic_divergence: "Markdown is explanatory; JSON is the machine contract"

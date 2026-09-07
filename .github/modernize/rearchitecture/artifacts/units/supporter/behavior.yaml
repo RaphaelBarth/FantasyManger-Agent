@@ -1,0 +1,10 @@
+unit: supporter
+side_effects:
+  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:87, action: "write fresh report and overwrite same report_id", must_preserve: true}
+  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:81, action: "merge four specialist fragments into uniform schema", must_preserve: true}
+branches:
+  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:92, condition: "one specialist fails", outcome: "mark only its portion unavailable and continue", must_preserve: true}
+  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:98, condition: "week 1", outcome: "preseason fallback may be labeled", must_preserve: true}
+error_paths:
+  - {source_loc: .github/skills/fantasy-manager-supporter/SKILL.md:103, contract: "never estimate missing facts", must_preserve: true}
+concurrency: {model: "collector/team analysis first; stats/injuries/news can run independently", tx_boundary: "report merge and stamp"}
