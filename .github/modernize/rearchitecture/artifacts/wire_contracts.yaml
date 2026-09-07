@@ -1,5 +1,5 @@
 contracts:
-  - source_loc: .github/skills/fantasy-manager-supporter-collector/SKILL.md:127
+  - source_loc: .github/skills/fantasy-manager-supporter-sleeper/SKILL.md:127
     kind: json
     stability: frozen
     producer: collector

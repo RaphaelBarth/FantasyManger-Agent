@@ -5,7 +5,7 @@ description: >-
   (Statistiken), fantasy-manager-supporter-injuries (Verletzungen),
   fantasy-manager-supporter-team-analysis (Team-Ausrichtung + Stärken/Schwächen
   eigenes Team & Gegner) und fantasy-manager-supporter-news (News) — sowie
-  zwingend den fantasy-manager-supporter-collector-Skill als gemeinsame
+  zwingend den fantasy-manager-supporter-sleeper-Skill als gemeinsame
   Rohdatenquelle, und fügt die Ergebnisse zu einem einzigen, vollständigen,
   quellenbelegten Report je Spieler/Team zusammen. Nur die aktuelle NFL-Saison
   (Woche-1-Ausnahme möglich). Kein Spielerprofil, keine Fantasy-Prognose, keine
@@ -35,7 +35,7 @@ Bei Custom-/Sleeper-Scoring keine Standardwerte annehmen.
 
 | Subskill | Liefert | Primär genutzt für |
 |---|---|---|
-| [fantasy-manager-supporter-collector](../fantasy-manager-supporter-collector/SKILL.md) | Rohdatenpaket von sleeper.com/nfl (Status, Game-Log/Stats, News-Feed, Team-/Schedule-Kontext) | Zwingende gemeinsame Ausgangsbasis/Kreuzcheck für alle vier Fach-Subskills |
+| [fantasy-manager-supporter-sleeper](../fantasy-manager-supporter-sleeper/SKILL.md) | Rohdatenpaket von sleeper.com/nfl (Status, Game-Log/Stats, News-Feed, Team-/Schedule-Kontext) | Zwingende gemeinsame Ausgangsbasis/Kreuzcheck für alle vier Fach-Subskills |
 | [fantasy-manager-supporter-team-analysis](../fantasy-manager-supporter-team-analysis/SKILL.md) | Nächster Gegner (Team/Datum/Heim-Auswärts/Bye), Team-Ausrichtung + Stärken/Schwächen (eigenes Team & Gegner) **und Gegner-Statistik** | `team_orientation`, `team_strengths`, `team_weaknesses`, `next_opponent.*` (inkl. `opponent_stats`) |
 | [fantasy-manager-supporter-stats](../fantasy-manager-supporter-stats/SKILL.md) | Saisonstatistik, Game Log, metrik-belegte Spieler-Stärken des Subjekts selbst | `stats`, `player_strengths` |
 | [fantasy-manager-supporter-injuries](../fantasy-manager-supporter-injuries/SKILL.md) | Aktueller Verletzungs-/Statusstatus | `injury` |
@@ -61,7 +61,7 @@ Ist der Name mehrdeutig, vor der Recherche nach Team/Position fragen.
 Kein Cache: dieser Ablauf wird bei **jeder** Anfrage vollständig durchlaufen —
 auch wenn bereits ein Report mit derselben `report_id` existiert.
 
-1. **Gemeinsame Rohdatenbasis (Pflicht):** `fantasy-manager-supporter-collector` einmal für
+1. **Gemeinsame Rohdatenbasis (Pflicht):** `fantasy-manager-supporter-sleeper` einmal für
    `subject` (und ggf. eigenes Team/absehbarer Gegner) aufrufen. Das Ergebnis
    wird den vier Fach-Subskills als **Ausgangspunkt/Kreuzcheck** mitgegeben,
    um doppelte Abrufe zu vermeiden — ersetzt aber nicht deren eigene

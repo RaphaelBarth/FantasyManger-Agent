@@ -1,5 +1,5 @@
 unit: collector
 bindings:
-  - {source_loc: .github/skills/fantasy-manager-supporter-collector/SKILL.md:39, trigger: "public Sleeper NFL page", must_appear_in_target: true}
+  - {source_loc: .github/skills/fantasy-manager-supporter-sleeper/SKILL.md:39, trigger: "public Sleeper NFL page", must_appear_in_target: true}
 runtime_config:
-  - {source_loc: .github/skills/fantasy-manager-supporter-collector/SKILL.md:23, key: "subject/season/week/as_of/format", must_appear_in_target: true}
+  - {source_loc: .github/skills/fantasy-manager-supporter-sleeper/SKILL.md:23, key: "subject/season/week/as_of/format", must_appear_in_target: true}

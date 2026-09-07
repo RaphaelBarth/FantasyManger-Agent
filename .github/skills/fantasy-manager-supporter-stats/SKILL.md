@@ -62,7 +62,7 @@ ausschließlich mit dem Subjekt selbst.
 
 ## Sleeper als Hilfsquelle (Sub-Subskill)
 
-Der Skill `fantasy-manager-supporter-collector` (Sleeper NFL Data Collector) darf
+Der Skill `fantasy-manager-supporter-sleeper` (Sleeper NFL Data Collector) darf
 als **Ausgangspunkt/Kreuzcheck** aufgerufen werden — z. B. um schnell zu sehen,
 welche Spiele/Wochen bereits existieren oder welchen Game-Log Sleeper zeigt.
 **Sleeper-Werte allein sind kein hinreichender Beleg** für Statistik oder

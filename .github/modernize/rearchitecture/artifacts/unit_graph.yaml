@@ -8,7 +8,7 @@ units:
     shared_refs: [report_identity]
   - name: collector
     source_anchors:
-      - .github/skills/fantasy-manager-supporter-collector/SKILL.md:13
+      - .github/skills/fantasy-manager-supporter-sleeper/SKILL.md:13
     exported_signature: "subject, season?, week?, as_of?, format? -> sourced raw data package"
     depends_on: []
     dynamic_entrypoints: ["public Sleeper page availability", "client-rendered tabs"]

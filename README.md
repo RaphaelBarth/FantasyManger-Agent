@@ -10,7 +10,7 @@ frische Daten).
 ```
  Fantasy Manager Agent (fantasy-manager-agent)   oberster Orchestrator
  ├─ Supporter (fantasy-manager-supporter)   orchestriert 4 Fach-Subskills + Sleeper-Collector
- │   ├─ Sleeper Collector (fantasy-manager-supporter-collector)   öffentliche Sleeper-Rohdaten (gemeinsame Basis)
+ │   ├─ Sleeper Collector (fantasy-manager-supporter-sleeper)   öffentliche Sleeper-Rohdaten (gemeinsame Basis)
  │   ├─ Statistiken (fantasy-manager-supporter-stats)          Saisonwerte, Game Log, Spieler-Stärken
  │   ├─ Verletzungen (fantasy-manager-supporter-injuries)      aktueller Status/Practice
  │   ├─ Team-Auswertung (fantasy-manager-supporter-team-analysis)  Ausrichtung + Stärken/Schwächen + Statistik (Team & Gegner)
@@ -40,7 +40,7 @@ Regelbasis: .github/skills/fantasy-lineup-coordinator/SleeperFantasyManager.md
     **und Gegner-Statistik** (da der Gegner hier ohnehin aufgelöst wird).
   - [fantasy-manager-supporter-news](./.github/skills/fantasy-manager-supporter-news/SKILL.md)
     — nur News (Sleeper-Feed NFL/FF News/NFL Community + verifizierte Insider).
-- [fantasy-manager-supporter-collector](./.github/skills/fantasy-manager-supporter-collector/SKILL.md) — erfasst alle öffentlich
+- [fantasy-manager-supporter-sleeper](./.github/skills/fantasy-manager-supporter-sleeper/SKILL.md) — erfasst alle öffentlich
   sichtbaren Sleeper-NFL-Daten zu genau einem Spieler oder Team, einschließlich
   Quellen, Filtern, Abrufzeit und expliziter Datenlücken. Dient dem Supporter und
   seinen Fach-Subskills als gemeinsame Rohdatenbasis/Kreuzcheck.

@@ -1,5 +1,5 @@
 ---
-name: fantasy-manager-supporter-collector
+name: fantasy-manager-supporter-sleeper
 description: >-
   Fach-Subskill des Supporters: sammelt die auf https://sleeper.com/nfl
   verfügbaren Rohdaten zu einem bestimmten NFL-Spieler oder Team und dient den
@@ -12,7 +12,7 @@ description: >-
   Login-, Rate-Limit- oder Zugriffsschutz.
 ---
 
-# Fantasy Manager Supporter Collector
+# Fantasy Manager Supporter Sleeper
 
 ## Ziel
 
