@@ -25,30 +25,36 @@ Detailregeln bleiben in den jeweiligen normalen Skills.
 
 | Skill | Verantwortung |
 |---|---|
+| `fantasy-manager-cleanup` | löscht alte temp-/Ausgabedaten vor einem neuen Wochenlauf |
 | `fantasy-manager-supporter-sleeper` | öffentliche Sleeper-Rohdaten und Quellen |
 | `fantasy-manager-supporter` | vollständiger Faktenreport |
 | `fantasy-effectiveness-evaluator` | Effektivität, Gate, Floor/Ceiling, Konfidenz |
-| `fantasy-lineup-coordinator` | regelkonforme optimale Slot-Zuordnung |
 | `fantasy-opportunity-scout` | Waiver-, Buy-low-, Sell-high- und Trade-Chancen |
+| `fantasy-lineup-coach` | regelkonforme optimale Slot-Zuordnung + führt Evaluator- und Scout-Ergebnisse zum Abschlussreport zusammen |
 
-## Routing
+## Routing (feste Reihenfolge für eine Wochen-Evaluation)
 
 1. Anfrage und Ziel klären: Spieler, Team, Kader, Woche, Scoring und
    gewünschtes Ergebnis.
-2. Für Fakten den `fantasy-manager-supporter` aufrufen. Dieser nutzt zwingend
-   den Sleeper-Collector und seine vier Fach-Subskills.
-3. Für eine Bewertung den `fantasy-effectiveness-evaluator` mit dem frischen
-   Supporter-Report aufrufen.
-4. Für eine Aufstellung den `fantasy-lineup-coordinator` mit Kader, Regeln und
-   Evaluationen aufrufen.
-5. Bei erkannten Kaderlücken oder strukturellen Schwächen den
-   `fantasy-opportunity-scout` aufrufen.
-6. Ergebnisse zusammenführen, Quellen und Datenlücken sichtbar halten und die
-   Antwort im angeforderten Format ausgeben.
+2. **Cleanup zuerst:** `fantasy-manager-cleanup` löscht alte Ausgaben
+   (`temp/`, vorherige Bundles), bevor neue Daten erzeugt werden.
+3. **Supporter:** `fantasy-manager-supporter` sammelt alle Daten (zwingend
+   inkl. Sleeper-Collector und seiner vier Fach-Subskills) und erstellt je
+   Kaderspieler einen frischen Report.
+4. **Evaluator:** `fantasy-effectiveness-evaluator` wertet diese Reports aus
+   (Effektivität, Gate, Konfidenz).
+5. **Scout:** `fantasy-opportunity-scout` führt seine Aufgabe aus (Waiver-/
+   Buy-low-/Sell-high-/Trade-Kandidaten auf Basis von Supporter + Evaluator).
+6. **Coach:** `fantasy-lineup-coach` führt Kader, Regeln, Evaluationen und die
+   Scout-Ergebnisse zusammen, löst die Slot-Zuordnung und gibt **einen**
+   Abschlussreport aus.
+7. Quellen und Datenlücken sichtbar halten und die Antwort im angeforderten
+   Format ausgeben.
 
 Nicht jede Anfrage braucht alle Skills. Eine reine Sleeper-Datenfrage darf
-direkt an den Collector geroutet werden; eine reine Aufstellungsfrage durchläuft
-mindestens Supporter, Evaluator und Coach.
+direkt an den Collector geroutet werden. Eine vollständige Wochen-Evaluation
+durchläuft immer alle sechs Schritte in dieser Reihenfolge: Cleanup →
+Supporter → Evaluator → Scout → Coach.
 
 ## Verbindliche Regeln
 

@@ -25,7 +25,7 @@ Buy-low-Ziele, Sell-high aus dem eigenen Kader und faire Trade-Paarungen.
   Verletzung, Team-Ausrichtung, nächster Gegner).
 - **fantasy-effectiveness-evaluator** → Effektivitätswert je Spieler.
 - **Sleeper-Regeln** (Waiver/FAAB, Trades, Roster/Slots) aus
-  [SleeperFantasyManager.md](../fantasy-lineup-coordinator/SleeperFantasyManager.md);
+  [SleeperFantasyManager.md](../fantasy-lineup-coach/SleeperFantasyManager.md);
   die konkrete Ligakonfiguration hat Vorrang.
 
 Der Scout bewertet jeden Kandidaten über die beiden Sub-Skills und erfindet keine

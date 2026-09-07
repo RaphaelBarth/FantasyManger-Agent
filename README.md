@@ -9,17 +9,20 @@ frische Daten).
 
 ```
  Fantasy Manager Agent (fantasy-manager-agent)   oberster Orchestrator
- ├─ Supporter (fantasy-manager-supporter)   orchestriert 4 Fach-Subskills + Sleeper-Collector
+ Feste Wochen-Pipeline: Cleanup → Supporter → Evaluator → Scout → Coach
+ ├─ 0. Cleanup (fantasy-manager-cleanup)   entfernt alte temp-/Ausgabedaten zuerst
+ ├─ 1. Supporter (fantasy-manager-supporter)   orchestriert 4 Fach-Subskills + Sleeper-Collector
  │   ├─ Sleeper Collector (fantasy-manager-supporter-sleeper)   öffentliche Sleeper-Rohdaten (gemeinsame Basis)
  │   ├─ Statistiken (fantasy-manager-supporter-stats)          Saisonwerte, Game Log, Spieler-Stärken
  │   ├─ Verletzungen (fantasy-manager-supporter-injuries)      aktueller Status/Practice
  │   ├─ Team-Auswertung (fantasy-manager-supporter-team-analysis)  Ausrichtung + Stärken/Schwächen + Statistik (Team & Gegner)
  │   └─ News (fantasy-manager-supporter-news)                  Sleeper-News-Feed + Insider
- ├─ Evaluator (fantasy-effectiveness-evaluator)  Effektivitaet je Spieler
- ├─ Coach (fantasy-lineup-coordinator)      normale Aufstellungsplanung
- └─ Scout (fantasy-opportunity-scout)       Sleeper- & Trade-Kandidaten
-                                             (nutzt Supporter + Evaluator)
-Regelbasis: .github/skills/fantasy-lineup-coordinator/SleeperFantasyManager.md
+ ├─ 2. Evaluator (fantasy-effectiveness-evaluator)  Effektivitaet je Spieler
+ ├─ 3. Scout (fantasy-opportunity-scout)       Sleeper- & Trade-Kandidaten
+ │                                             (nutzt Supporter + Evaluator)
+ └─ 4. Coach (fantasy-lineup-coach)      Slot-Zuordnung + fasst Evaluator- und
+                                          Scout-Ergebnisse zum Abschlussreport zusammen
+Regelbasis: .github/skills/fantasy-lineup-coach/SleeperFantasyManager.md
 ```
 
 - [fantasy-manager-supporter](./.github/skills/fantasy-manager-supporter/SKILL.md) —
@@ -51,19 +54,21 @@ Regelbasis: .github/skills/fantasy-lineup-coordinator/SleeperFantasyManager.md
   (Waiver/FA) und Buy-low/Sell-high/Trade-Paarungen.
 - [fantasy-manager-agent](./.github/agents/fantasy-manager-agent.agent.md) —
   oberster Einstiegspunkt; routet und orchestriert alle Fachskills.
-- [fantasy-lineup-coordinator](./.github/skills/fantasy-lineup-coordinator/SKILL.md) —
-  normaler Aufstellungs-Skill; optimiert nur die Slot-Zuordnung.
-- [SleeperFantasyManager.md](./.github/skills/fantasy-lineup-coordinator/SleeperFantasyManager.md)
+- [fantasy-lineup-coach](./.github/skills/fantasy-lineup-coach/SKILL.md) —
+  letzter Pipeline-Schritt; löst die Slot-Zuordnung und führt Evaluator- und
+  Scout-Ergebnisse zu einem Abschlussreport zusammen.
+- [SleeperFantasyManager.md](./.github/skills/fantasy-lineup-coach/SleeperFantasyManager.md)
   — Sleeper-Regelbasis (Slots, Scoring, Waiver/FAAB, Trades).
 
-## Datenfluss
+## Datenfluss (feste Reihenfolge)
 
 ```
 Anfrage ─▶ Fantasy Manager Agent
-             ├─▶ Supporter (Report je Spieler, JSON, immer frisch – kein Cache)
-             ├─▶ Evaluator (Effektivitaet E + Gate)
-             ├─▶ Coach (exakte Slot-Zuordnung ─▶ beste Elf)
-             └─▶ Scout (bei Schwaeche: Waiver/Trade)
+             ├─▶ 0. Cleanup (alte temp-/Ausgabedaten zuerst löschen)
+             ├─▶ 1. Supporter (Report je Spieler, JSON, immer frisch – kein Cache)
+             ├─▶ 2. Evaluator (Effektivitaet E + Gate)
+             ├─▶ 3. Scout (Waiver-/Trade-Kandidaten aus Supporter+Evaluator)
+             └─▶ 4. Coach (exakte Slot-Zuordnung + Scout-Ergebnisse ─▶ ein Abschlussreport)
 ```
 
 ## Werkzeuge (je Skill-Ordner unter `tools/`, nur Python-Standardbibliothek)
@@ -73,14 +78,14 @@ Jeder Skill, der Code ausführt, bringt seine Tools als direkten Unterordner
 
 | Datei | Skill (Owner) | Zweck |
 |---|---|---|
-| [fmlib.py](./.github/skills/fantasy-lineup-coordinator/tools/fmlib.py) | fantasy-lineup-coordinator | IDs, ISO-Zeit, `content_hash` (Text/JSON), `injury_gate`, Mini-Schema-Validator, Ungarischer Optimizer `optimize_lineup` |
-| [report_cache.py](./.github/skills/fantasy-lineup-coordinator/tools/report_cache.py) | fantasy-lineup-coordinator | Reports schreiben (md/json, kein Cache — jeder Aufruf überschreibt frisch), `verify`, `validate` |
-| [run_week.py](./.github/skills/fantasy-lineup-coordinator/tools/run_week.py) | fantasy-lineup-coordinator | End-to-End: Kader → frische Reports (kein Cache — jeder Lauf zieht neue Daten, **einheitliche Struktur + Vollständigkeitsprüfung**) → **Evaluator je Spieler** (`fmlib.evaluate`) → evaluator-adjustierte Punkte → optimale Elf → Scout-Zusammenfassung → Bundle (`lineup-*`, `evaluations-*`, inkl. `data_completeness`) |
-| [schemas/](./.github/skills/fantasy-lineup-coordinator/tools/schemas) | fantasy-lineup-coordinator | JSON-Schemas: report, evaluation, lineup |
+| [fmlib.py](./.github/skills/fantasy-lineup-coach/tools/fmlib.py) | fantasy-lineup-coach | IDs, ISO-Zeit, `content_hash` (Text/JSON), `injury_gate`, Mini-Schema-Validator, Ungarischer Optimizer `optimize_lineup` |
+| [report_cache.py](./.github/skills/fantasy-lineup-coach/tools/report_cache.py) | fantasy-lineup-coach | Reports schreiben (md/json, kein Cache — jeder Aufruf überschreibt frisch), `verify`, `validate` |
+| [run_week.py](./.github/skills/fantasy-lineup-coach/tools/run_week.py) | fantasy-lineup-coach | End-to-End: Kader → frische Reports (kein Cache — jeder Lauf zieht neue Daten, **einheitliche Struktur + Vollständigkeitsprüfung**) → **Evaluator je Spieler** (`fmlib.evaluate`) → evaluator-adjustierte Punkte → optimale Elf → Scout-Zusammenfassung → Bundle (`lineup-*`, `evaluations-*`, inkl. `data_completeness`) |
+| [schemas/](./.github/skills/fantasy-lineup-coach/tools/schemas) | fantasy-lineup-coach | JSON-Schemas: report, evaluation, lineup |
 | [cleanup_generated.py](./.github/skills/fantasy-manager-cleanup/tools/cleanup_generated.py) | fantasy-manager-cleanup | Sicherer Cleanup für erzeugte `out-*`-, `reports-*`- und `temp`-Ausgabeordner; Dry-Run standardmäßig aktiv |
 
 Andere Skills (Supporter, Evaluator, Team-Auswertung) **führen diese Tools nicht
-selbst aus** — sie referenzieren nur den `fantasy-lineup-coordinator`-Skill als
+selbst aus** — sie referenzieren nur den `fantasy-lineup-coach`-Skill als
 alleinigen Ausführer, um Codeduplikate zu vermeiden.
 
 **Auto-Befüllung ohne Recherche:** Schon aus einem nackten Kader (nur `team`/`pos`
@@ -95,7 +100,7 @@ Woche-1-Preseason-Fallback möglich) bleiben eingabe-/saisonabhängig.
 
 ```bash
 # Beste Aufstellung fuer eine Woche berechnen (End-to-End):
-python .github/skills/fantasy-lineup-coordinator/tools/run_week.py \
+python .github/skills/fantasy-lineup-coach/tools/run_week.py \
     --input tools/examples/team-r4ph4.week1.input.json \
     --report-dir ./temp/reports --out-dir . --json-dir ./temp --as-of 2026-09-03T21:00:00+02:00
 
@@ -124,7 +129,7 @@ angefasst.
   Es wird nie ungeprüft ein alter Report wiederverwendet.
 - **`content_hash`:** Prüfsumme über den Faktenteil (ohne `meta`/`generated_at`).
   Gleiche Eingaben/Quellen → gleicher Hash; nur `generated_at` variiert.
-- Prüfen: `python .github/skills/fantasy-lineup-coordinator/tools/report_cache.py verify --path <report>`.
+- Prüfen: `python .github/skills/fantasy-lineup-coach/tools/report_cache.py verify --path <report>`.
 
 ## Datenquellen-Grundsätze
 

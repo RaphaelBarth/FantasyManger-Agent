@@ -3,7 +3,7 @@
 ## Zweck
 
 Diese Wissensbasis beschreibt, wie der NFL-Fantasy-Manager **Sleeper** funktioniert.
-Sie ist die **kanonische Referenz** für die Skills `fantasy-lineup-coordinator`,
+Sie ist die **kanonische Referenz** für die Skills `fantasy-lineup-coach`,
 `fantasy-manager-supporter` und `fantasy-effectiveness-evaluator` (Ligamodell,
 Slots, Scoring, Waiver/FAAB, Trades, Matchups, Roster-/Lineup-Regeln).
 

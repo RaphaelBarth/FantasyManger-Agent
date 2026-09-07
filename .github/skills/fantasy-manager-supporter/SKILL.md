@@ -28,7 +28,7 @@ jeder Anfrage werden alle Subskills erneut aufgerufen und ein frischer Report
 geschrieben, auch wenn bereits einer vorliegt.
 
 **Sleeper-Referenz:** Ligamodell, Scoring und Roster-/Slot-Regeln folgen der
-Wissensbasis [SleeperFantasyManager.md](../fantasy-lineup-coordinator/SleeperFantasyManager.md).
+Wissensbasis [SleeperFantasyManager.md](../fantasy-lineup-coach/SleeperFantasyManager.md).
 Bei Custom-/Sleeper-Scoring keine Standardwerte annehmen.
 
 ## Sub-Skills (Abhängigkeiten)
@@ -86,7 +86,7 @@ auch wenn bereits ein Report mit derselben `report_id` existiert.
    `data_gaps` aus den von den Subskills gemeldeten Lücken bilden.
 6. **Stempeln & schreiben:** `meta.report_id`, `generated_at`, `content_hash`
    (nur über den Faktenteil) setzen und über `tools/report_cache.py` (im
-   `fantasy-lineup-coordinator`-Skill) bzw. dessen Runner ablegen — eine ggf.
+   `fantasy-lineup-coach`-Skill) bzw. dessen Runner ablegen — eine ggf.
    vorhandene Datei gleicher `report_id` wird dabei **überschrieben**.
 
 Schlägt der Collector oder ein Fach-Subskill fehl oder liefert nichts, wird sein Anteil als
@@ -166,25 +166,25 @@ sein. Regeln:
 
 ### Werkzeug (schreibt Reports frisch, ohne Cache; prüft Reproduzierbarkeit)
 
-Das Skript [tools/report_cache.py](../fantasy-lineup-coordinator/tools/report_cache.py)
-(baut auf [tools/fmlib.py](../fantasy-lineup-coordinator/tools/fmlib.py) auf, nur
-Python-Standardbibliothek; beide liegen im `fantasy-lineup-coordinator`-Skill,
+Das Skript [tools/report_cache.py](../fantasy-lineup-coach/tools/report_cache.py)
+(baut auf [tools/fmlib.py](../fantasy-lineup-coach/tools/fmlib.py) auf, nur
+Python-Standardbibliothek; beide liegen im `fantasy-lineup-coach`-Skill,
 dem alleinigen Ausführer dieser Tools) setzt beide Regeln deterministisch
 um — für **Markdown- und JSON-Reports**:
 
 ```
 # JSON-Report schreiben (ueberschreibt einen ggf. vorhandenen Report) + gegen Schema pruefen:
-python ../fantasy-lineup-coordinator/tools/report_cache.py writejson --subject "Sam LaPorta" --season 2026 --week 1 \
-    --report-dir ./temp/reports --as-of <ISO> --schema ../fantasy-lineup-coordinator/tools/schemas/report.schema.json --facts facts.json
+python ../fantasy-lineup-coach/tools/report_cache.py writejson --subject "Sam LaPorta" --season 2026 --week 1 \
+    --report-dir ./temp/reports --as-of <ISO> --schema ../fantasy-lineup-coach/tools/schemas/report.schema.json --facts facts.json
 
 # Markdown-Report schreiben/stempeln (Titelzeile + Abschnitte, ohne Meta-Zeile):
-python ../fantasy-lineup-coordinator/tools/report_cache.py write --subject "Sam LaPorta" --season 2026 --week 1 \
+python ../fantasy-lineup-coach/tools/report_cache.py write --subject "Sam LaPorta" --season 2026 --week 1 \
     --report-dir ./temp/reports --as-of <ISO> --facts facts.md
 
 # Reproduzierbarkeit pruefen:
-python ../fantasy-lineup-coordinator/tools/report_cache.py hashjson --facts facts.json   # Hash zweier Laeufe vergleichen
-python ../fantasy-lineup-coordinator/tools/report_cache.py verify --path ./temp/reports/<id>.json   # gespeicherten Hash nachrechnen
-python ../fantasy-lineup-coordinator/tools/report_cache.py validate --path report.json --schema ../fantasy-lineup-coordinator/tools/schemas/report.schema.json
+python ../fantasy-lineup-coach/tools/report_cache.py hashjson --facts facts.json   # Hash zweier Laeufe vergleichen
+python ../fantasy-lineup-coach/tools/report_cache.py verify --path ./temp/reports/<id>.json   # gespeicherten Hash nachrechnen
+python ../fantasy-lineup-coach/tools/report_cache.py validate --path report.json --schema ../fantasy-lineup-coach/tools/schemas/report.schema.json
 ```
 
 Bevorzugt wird das **JSON-Format** (maschinenlesbar, schema-validiert), das
@@ -194,12 +194,12 @@ Subskill-Ergebnisse nachweisbar identische Reports liefern.
 
 ## Gebündelte Auto-Befüllung im Offline-Runner
 
-[tools/run_week.py](../fantasy-lineup-coordinator/tools/run_week.py) (End-to-End-Runner
-des `fantasy-lineup-coordinator`-Skills, ohne Live-
+[tools/run_week.py](../fantasy-lineup-coach/tools/run_week.py) (End-to-End-Runner
+des `fantasy-lineup-coach`-Skills, ohne Live-
 Recherche) füllt Team-/Gegner-**Ausrichtung** sowie **Stärken/Schwächen** und
 den **nächsten Gegner** bereits aus der mitgelieferten Wissensbasis
-([team_profiles.default.json](../fantasy-lineup-coordinator/tools/team_profiles.default.json)) und dem
-Spielplan ([schedule.default.json](../fantasy-lineup-coordinator/tools/schedule.default.json)) — das
+([team_profiles.default.json](../fantasy-lineup-coach/tools/team_profiles.default.json)) und dem
+Spielplan ([schedule.default.json](../fantasy-lineup-coach/tools/schedule.default.json)) — das
 entspricht funktional dem, was der Team-Auswertung-Subskill bei Live-Recherche
 liefert. Läuft dieser Skill mit echter Recherche, **überschreiben** seine
 Ergebnisse die Defaults; nur `news` (Live-Feed) und Saisonstatistik bleiben in
@@ -265,6 +265,6 @@ Stand (as_of): <as_of> | Saison: <...> | Quelle der aktuellen Saison
 ```
 
 Keine weiteren Abschnitte (kein Profil, keine Einschätzung, keine Prognose).
-Für die maschinenlesbare Form siehe `fantasy-lineup-coordinator/tools/schemas/report.schema.json`
+Für die maschinenlesbare Form siehe `fantasy-lineup-coach/tools/schemas/report.schema.json`
 (identische Feldnamen, vom Orchestrator aus den vier Subskill-Fragmenten
 zusammengesetzt).

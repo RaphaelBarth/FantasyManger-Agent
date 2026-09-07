@@ -20,7 +20,7 @@ effektiv ein Spieler voraussichtlich sein wird. Der Report ist die
 **Datenquelle** – dieser Skill erfindet keine Zahlen dazu.
 
 **Sleeper-Referenz:** Das verwendete Scoring/Ligaformat richtet sich nach der
-Wissensbasis [SleeperFantasyManager.md](../fantasy-lineup-coordinator/SleeperFantasyManager.md);
+Wissensbasis [SleeperFantasyManager.md](../fantasy-lineup-coach/SleeperFantasyManager.md);
 die Scoring-abhängige Gewichtung nutzt diese Regeln statt Annahmen.
 
 ## Eingaben
@@ -58,8 +58,8 @@ Multiplikator (Gate), weil ein nicht spielender Spieler 0 Punkte bringt.
 ### 1. Verfügbarkeit (Gate, Multiplikator 0–1)
 Formales Gate aus **Game-Status × Trainingsteilnahme** (letzte Einheit: DNP =
 did not practice, LP = limited, FP = full). Referenzimplementierung (nur der
-`fantasy-lineup-coordinator`-Skill führt sie aus) in
-[tools/fmlib.py](../fantasy-lineup-coordinator/tools/fmlib.py) → `injury_gate(status, practice)`:
+`fantasy-lineup-coach`-Skill führt sie aus) in
+[tools/fmlib.py](../fantasy-lineup-coach/tools/fmlib.py) → `injury_gate(status, practice)`:
 
 | Status \ Practice | DNP | LP | FP / unbekannt |
 |---|---|---|---|
@@ -135,8 +135,8 @@ Quelle. Nie neue Faktoren erfinden; ohne Quelle kein Effekt.
 
 ## Gewichte und Berechnung
 
-Deterministisch umgesetzt (nur der `fantasy-lineup-coordinator`-Skill führt sie
-aus) in [tools/fmlib.py](../fantasy-lineup-coordinator/tools/fmlib.py) → `evaluate(...)`.
+Deterministisch umgesetzt (nur der `fantasy-lineup-coach`-Skill führt sie
+aus) in [tools/fmlib.py](../fantasy-lineup-coach/tools/fmlib.py) → `evaluate(...)`.
 Basisgewichte:
 
 | Faktor | Gewicht |
@@ -224,7 +224,7 @@ Datenlücke. Nur Report-Fakten, keine Erfindungen.
 
 Keine Zusatzabschnitte; keine erfundenen Statistiken; keine Wett- oder
 Gesundheitsaussagen. Der Runner erzeugt die 4–6-Satz-Begründung deterministisch
-(`evaluation_rationale` in [tools/run_week.py](../fantasy-lineup-coordinator/tools/run_week.py)) und legt sie
+(`evaluation_rationale` in [tools/run_week.py](../fantasy-lineup-coach/tools/run_week.py)) und legt sie
 je Spieler in `evaluations-*.json` ab.
 
 ## Ablauf

@@ -73,10 +73,10 @@ Quellen unten.
 ## Gebündelte Wissensbasis (Offline-Fallback)
 
 Die Tools bringen eine recherchierte Basis-Ausrichtung + Stärken/Schwächen für
-alle NFL-Teams mit: [tools/team_profiles.default.json](../fantasy-lineup-coordinator/tools/team_profiles.default.json)
-und den Spielplan [tools/schedule.default.json](../fantasy-lineup-coordinator/tools/schedule.default.json).
-Diese werden vom Offline-Runner der `fantasy-lineup-coordinator`-Tools
-(`tools/run_week.py` im `fantasy-lineup-coordinator`-Skill) automatisch geladen, wenn keine Recherche stattfindet.
+alle NFL-Teams mit: [tools/team_profiles.default.json](../fantasy-lineup-coach/tools/team_profiles.default.json)
+und den Spielplan [tools/schedule.default.json](../fantasy-lineup-coach/tools/schedule.default.json).
+Diese werden vom Offline-Runner der `fantasy-lineup-coach`-Tools
+(`tools/run_week.py` im `fantasy-lineup-coach`-Skill) automatisch geladen, wenn keine Recherche stattfindet.
 keine Recherche stattfindet. Dieser Skill soll bei einer **echten Recherche**
 diese Basis nach Möglichkeit **verifizieren/aktualisieren** (Coordinators und
 Schemes ändern sich) statt sie blind zu wiederholen; ein aktuell recherchierter

@@ -1,34 +1,42 @@
 ﻿---
-name: fantasy-lineup-coordinator
+name: fantasy-lineup-coach
 description: >-
-  Normaler Fachskill für die aktuelle NFL-Woche. Erstellt aus bereits
-  vorbereiteten Reports und Effektivitätswerten die beste regelkonforme
-  Aufstellung eines Fantasy-Kaders und löst die Slot-Zuordnung. Der oberste
-  fantasy-manager-agent orchestriert Supporter, Evaluator, diesen Skill und
-  optional den Opportunity-Scout.
+  Normaler Fachskill für die aktuelle NFL-Woche. Letzter Schritt der festen
+  Wochen-Pipeline (Cleanup → Supporter → Evaluator → Scout → Coach): erstellt
+  aus bereits vorbereiteten Reports und Effektivitätswerten die beste
+  regelkonforme Aufstellung eines Fantasy-Kaders, löst die Slot-Zuordnung und
+  führt Evaluator- und Scout-Ergebnisse zu einem einzigen Abschlussreport
+  zusammen. Der oberste fantasy-manager-agent orchestriert Cleanup, Supporter,
+  Evaluator, Scout und diesen Skill in dieser Reihenfolge.
   Verwende den Skill bei Anfragen wie "stelle das beste Team für diese Woche auf",
   "optimiere meine Lineup" oder "wen soll ich starten".
   Erzeugt eine Empfehlung mit Konfidenz, keine Garantie; keine Wette.
 ---
 
-# Fantasy Lineup Coordinator
+# Fantasy Lineup Coach
 
-Dieser Skill ist **kein Top-Level-Orchestrator**. Er ist ausschließlich für die
-Aufstellungsplanung zuständig und wird normalerweise vom
-`fantasy-manager-agent` aufgerufen.
+Dieser Skill ist **kein Top-Level-Orchestrator**. Er ist der **letzte Schritt**
+der Wochen-Pipeline (`Cleanup → Supporter → Evaluator → Scout → Coach`) und
+wird normalerweise vom `fantasy-manager-agent` aufgerufen.
 
 ## Ziel
 
 Für die **aktuelle Woche** aus einem Kader die **beste Startaufstellung**
 bestimmen – datenbasiert über vorbereitete Reports und eine transparente
-Optimierung der Slot-Zuordnung.
+Optimierung der Slot-Zuordnung – und die Ergebnisse von Evaluator und Scout zu
+einem einzigen Abschlussreport zusammenführen.
 
-## Eingangsartefakte (vom Top-Level-Agenten)
+## Eingangsartefakte (vom Top-Level-Agenten, in dieser Reihenfolge erzeugt)
 
+0. **Cleanup zuerst:** `fantasy-manager-cleanup` hat vor diesem Lauf alle alten
+   Ausgaben (`temp/`, vorherige Bundles) entfernt — der Coach startet nie auf
+   Altdaten.
 1. Kader und konkrete Liga-Regeln.
 2. Ein frischer Supporter-Report je Kaderspieler.
 3. Eine Evaluation je Kaderspieler mit Effektivität, Gate und Konfidenz.
-4. Optional eine separate Scout-Empfehlung für erkannte Schwächen.
+4. Die Scout-Empfehlung (Waiver/Trade-Kandidaten, erkannte Schwächen) — läuft
+   in der Pipeline vor dem Coach und wird von ihm **immer** in den Abschlussreport
+   übernommen (eigener Abschnitt, keine Vermischung mit Startelf-Zahlen).
 
 Der Coach recherchiert und orchestriert diese Skills nicht selbst. Er erfindet
 keine Werte oder Spieler; fehlende Daten senken die Konfidenz.
@@ -87,7 +95,8 @@ werden analog nach ihrer erlaubten Menge behandelt.
 3. **Optimierung** (siehe unten): Zuordnung Spieler → Slots, die die Summe der
    Startwerte maximiert und jede Slot-Eignung respektiert.
 4. **Ausgabe**: empfohlene Startelf pro Slot, Bank, knappe Entscheidungen,
-   Monitore (offene QUES-Fälle), optionale Scout-Empfehlungen und Konfidenz.
+   Monitore (offene QUES-Fälle), die Scout-Empfehlungen aus dem vorgelagerten
+   Scout-Lauf und Konfidenz — zu **einem** Abschlussreport zusammengeführt.
 
 ## Optimierung (maximale Gesamteffektivität)
 
@@ -147,7 +156,7 @@ Verletzungs-/Rollenrisiko).
 
 ```markdown
 # Beste Aufstellung: <Team> — Woche <n>
-Stand: <as_of> | Scoring: <...> | Basierend auf: fantasy-manager-supporter + fantasy-effectiveness-evaluator (+ fantasy-opportunity-scout bei Schwachstelle)
+Stand: <as_of> | Scoring: <...> | Basierend auf: fantasy-manager-supporter + fantasy-effectiveness-evaluator + fantasy-opportunity-scout
 
 ## Startaufstellung (Tabelle)
 | Slot | Spieler | Pos | Team | E | Proj | Tilt | Gate | Eff | Floor–Ceil | Konf |
@@ -171,10 +180,11 @@ Stand: <as_of> | Scoring: <...> | Basierend auf: fantasy-manager-supporter + fan
 - Knappe Slot-Duelle und warum der Sieger startet
 - Monitore (offene QUES) + gesunder Pivot
 
-## Scout-Empfehlungen (optional, bei Schwachstelle)
+## Scout-Empfehlungen (Pflichtabschnitt, aus dem vorgelagerten Scout-Lauf)
 - Ausgelöste Schwäche (Slot/Bye/Konfidenz) und die vom Scout gelieferten
   Waiver-/Trade-Vorschläge (Kandidat/Typ, Aktion) — als Empfehlung, nicht Teil
-  der aktuellen Startelf
+  der aktuellen Startelf. Liefert der Scout keine Kandidaten, hier explizit
+  "keine Empfehlung" statt den Abschnitt wegzulassen.
 
 ## Konfidenz & Datenlücken
 - Gesamtkonfidenz und was sie begrenzt ("noch keine Saisondaten" …)
