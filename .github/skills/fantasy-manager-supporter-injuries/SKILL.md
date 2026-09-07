@@ -49,7 +49,7 @@ as_of: ISO-8601-Zeitpunkt, optional; standardmäßig jetzt
 
 ## Sleeper als Hilfsquelle (Sub-Subskill)
 
-`fantasy-manager-sleeper-nfl-data` liefert im Abschnitt „Stammdaten und Status"
+`fantasy-manager-supporter-collector` liefert im Abschnitt „Stammdaten und Status"
 sowie „News und Verletzungs-/Statusmeldungen" den auf Sleeper angezeigten
 Status/Practice-Status — als **schneller Kreuzcheck** nutzbar. Für die
 Übernahme in den Report muss der Status gegen den **offiziellen NFL-/Team-

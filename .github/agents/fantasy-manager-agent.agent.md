@@ -25,7 +25,7 @@ Detailregeln bleiben in den jeweiligen normalen Skills.
 
 | Skill | Verantwortung |
 |---|---|
-| `sleeper-nfl-data-collector` | öffentliche Sleeper-Rohdaten und Quellen |
+| `fantasy-manager-supporter-collector` | öffentliche Sleeper-Rohdaten und Quellen |
 | `fantasy-manager-supporter` | vollständiger Faktenreport |
 | `fantasy-effectiveness-evaluator` | Effektivität, Gate, Floor/Ceiling, Konfidenz |
 | `fantasy-lineup-coordinator` | regelkonforme optimale Slot-Zuordnung |

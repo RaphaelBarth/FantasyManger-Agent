@@ -64,7 +64,7 @@ as_of: ISO-8601-Zeitpunkt, optional; standardmäßig jetzt
 
 ## Sleeper als Hilfsquelle (Sub-Subskill)
 
-`fantasy-manager-sleeper-nfl-data` liefert Team-Kontext (Depth Chart, Schedule,
+`fantasy-manager-supporter-collector` liefert Team-Kontext (Depth Chart, Schedule,
 Roster) — nutzbar, um den nächsten Gegner/Spielplan schnell zu verifizieren
 und den Teamkontext eines Spielers zu bestätigen. Für **Scheme-Fakten** (HC/OC/
 DC, Grundschema, Tendenzen) ist Sleeper keine Primärquelle; dafür gelten die

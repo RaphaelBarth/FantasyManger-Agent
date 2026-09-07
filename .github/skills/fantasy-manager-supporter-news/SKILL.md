@@ -49,7 +49,7 @@ lookback: Zeitraum, optional; Standard die letzten 7 Tage bis `as_of`
 
 ## Sleeper News Feed (Hauptquelle über Sub-Subskill)
 
-`fantasy-manager-sleeper-nfl-data` liefert im Abschnitt „News und Verletzungs-/
+`fantasy-manager-supporter-collector` liefert im Abschnitt „News und Verletzungs-/
 Statusmeldungen" den auf Sleeper kuratierten Feed. Dieser hat drei
 Feed-Quellen mit **unterschiedlicher Verlässlichkeit**:
 

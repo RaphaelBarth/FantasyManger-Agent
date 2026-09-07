@@ -3,7 +3,7 @@
 Diese Liste ist die verbindliche Quellenbasis des Skills `fantasy-manager-supporter`
 und seiner vier Fach-Subskills (`fantasy-manager-supporter-stats`,
 `fantasy-manager-supporter-injuries`, `fantasy-manager-supporter-team-analysis`,
-`fantasy-manager-supporter-news`) sowie des `fantasy-manager-sleeper-nfl-data`-
+`fantasy-manager-supporter-news`) sowie des `fantasy-manager-supporter-collector`-
 Skills, der als gemeinsame Rohdatenbasis/Kreuzcheck dient.
 **Grundsatz:** keine Annahmen. Jede Zahl/Stärke/Schwäche braucht eine Metrik der
 **aktuellen Saison** + Quelle + Datum. Ohne Beleg → „nicht belegt".

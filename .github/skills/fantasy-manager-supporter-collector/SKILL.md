@@ -1,16 +1,18 @@
 ---
-name: sleeper-nfl-data-collector
+name: fantasy-manager-supporter-collector
 description: >-
-  Sammelt die auf https://sleeper.com/nfl verfügbaren Informationen zu einem
-  bestimmten NFL-Spieler oder Team. Der Skill ruft die passende Sleeper-Seite
-  ab, folgt den dort verlinkten Detailansichten und liefert ein vollständiges,
-  quellenbelegtes Datenpaket mit Abrufzeitpunkt. Verwende ihn bei Anfragen wie
-  "alle Sleeper-Infos zu Spieler X", "durchsuche Sleeper für Team Y" oder
-  "was steht bei Sleeper über X". Keine erfundenen Werte, keine Umgehung von
+  Fach-Subskill des Supporters: sammelt die auf https://sleeper.com/nfl
+  verfügbaren Rohdaten zu einem bestimmten NFL-Spieler oder Team und dient den
+  übrigen Supporter-Subskills (Statistik, Verletzung, News, Team-Auswertung) als
+  gemeinsame, zwingende Ausgangsbasis/Kreuzcheck. Der Skill ruft die passende
+  Sleeper-Seite ab, folgt den dort verlinkten Detailansichten und liefert ein
+  vollständiges, quellenbelegtes Datenpaket mit Abrufzeitpunkt. Verwende ihn bei
+  Anfragen wie "alle Sleeper-Infos zu Spieler X", "durchsuche Sleeper für Team Y"
+  oder "was steht bei Sleeper über X". Keine erfundenen Werte, keine Umgehung von
   Login-, Rate-Limit- oder Zugriffsschutz.
 ---
 
-# Sleeper NFL Data Collector
+# Fantasy Manager Supporter Collector
 
 ## Ziel
 
