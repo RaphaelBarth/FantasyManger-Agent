@@ -1,9 +1,9 @@
 ---
-name: fantasy-manager-supporter-sleeper
+name: analyst-sleeper
 description: >-
-  Fach-Subskill des Supporters: sammelt die auf https://sleeper.com/nfl
+  Fach-Subskill des Analysts: sammelt die auf https://sleeper.com/nfl
   verfügbaren Rohdaten zu einem bestimmten NFL-Spieler oder Team und dient den
-  übrigen Supporter-Subskills (Statistik, Verletzung, News, Team-Auswertung) als
+  übrigen Analyst-Subskills (Statistik, Verletzung, News, Team-Auswertung) als
   gemeinsame, zwingende Ausgangsbasis/Kreuzcheck. Der Skill ruft die passende
   Sleeper-Seite ab, folgt den dort verlinkten Detailansichten und liefert ein
   vollständiges, quellenbelegtes Datenpaket mit Abrufzeitpunkt. Verwende ihn bei
@@ -12,7 +12,13 @@ description: >-
   Login-, Rate-Limit- oder Zugriffsschutz.
 ---
 
-# Fantasy Manager Supporter Sleeper
+# Analyst Sleeper
+
+## Quellen
+
+Die verbindliche Online-Quellenbasis und Zitierregeln stehen in
+[`sources.md`](./sources.md). Sleeper ist hier die primäre
+Rohdatenquelle; geschützte oder nicht sichtbare Daten werden nicht ergänzt.
 
 ## Ziel
 

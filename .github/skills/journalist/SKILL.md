@@ -1,16 +1,22 @@
 ﻿---
-name: fantasy-manager-supporter-news
+name: journalist
 description: >-
-  Fach-Subskill des Supporters: trägt ausschließlich aktuelle News/Meldungen zu
+  Fach-Subskill des Analysts: trägt ausschließlich aktuelle News/Meldungen zu
   einem Spieler oder Team zusammen — primär aus dem Sleeper News Feed (NFL,
   FF News, NFL Community) sowie verifizierten NFL-Insidern, mit Quellen-Tiering
   und Bestätigungsstatus. Keine Statistik, keine Stärken/Schwächen-Bewertung,
   keine offizielle Verletzungsstatus-Feststellung (nur die Meldung darüber).
-  Wird vom fantasy-manager-supporter orchestriert, kann aber auch einzeln für
+  Wird vom fantasy-manager orchestriert, kann aber auch einzeln für
   "aktuelle News zu Spieler X" genutzt werden.
 ---
 
-# Fantasy Manager Supporter — News
+# Journalist — News
+
+## Quellen
+
+Die verbindliche Online-Quellenbasis und Zitierregeln stehen in
+[`sources.md`](./sources.md). Jede Meldung erhält Outlet,
+Autor, Veröffentlichungszeitpunkt, URL und `retrieved_at`.
 
 ## Ziel
 
@@ -22,10 +28,10 @@ Coaching-/Scheme-News. Kein Statistikwert, keine Stärken/Schwächen-Bewertung.
 ## Abgrenzung zu den Geschwister-Subskills
 
 - Die **offizielle Statusfeststellung** (Injury Report, Practice-Status)
-  gehört zu `fantasy-manager-supporter-injuries`; dieser Skill liefert nur die
+  gehört zu `doctor`; dieser Skill liefert nur die
   **Meldung darüber** (wer hat wann was gemeldet).
 - Statistik/Team-Ausrichtung/Stärken-Schwächen: siehe
-  `fantasy-manager-supporter-stats` bzw. `fantasy-manager-supporter-team-analysis`.
+  `analyst-stats` bzw. `analyst-team-analysis`.
 
 ## Eingaben
 
@@ -49,7 +55,7 @@ lookback: Zeitraum, optional; Standard die letzten 7 Tage bis `as_of`
 
 ## Sleeper News Feed (Hauptquelle über Sub-Subskill)
 
-`fantasy-manager-supporter-sleeper` liefert im Abschnitt „News und Verletzungs-/
+`analyst-sleeper` liefert im Abschnitt „News und Verletzungs-/
 Statusmeldungen" den auf Sleeper kuratierten Feed. Dieser hat drei
 Feed-Quellen mit **unterschiedlicher Verlässlichkeit**:
 

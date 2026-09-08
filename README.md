@@ -1,8 +1,8 @@
 ﻿# FantasyManager-Agent
 
 Skill-Familie für einen **Sleeper**-NFL-Fantasy-Manager: sammelt Daten,
-bewertet Spieler, baut die beste Wochenaufstellung und findet Waiver-/
-Trade-Chancen — reproduzierbar, ohne Cache.
+bewertet Spieler für den nächsten Spieltag, findet Waiver-/Trade-Chancen und
+erstellt belegte Reports — reproduzierbar, ohne Cache.
 
 ## Konfiguration (von dir editierbar)
 
@@ -21,38 +21,40 @@ mit anderem `<team>`-Namen an (z. B. `roster-team-x.md` +
 
 ## Pipeline
 
-Feste Reihenfolge, orchestriert vom [fantasy-manager-agent](./.github/agents/fantasy-manager-agent.agent.md):
+Feste Reihenfolge, orchestriert vom [fantasy-manager](./.github/agents/fantasy-manager.agent.md):
 
 ```
-Cleanup ─▶ Supporter ─▶ Evaluator ─▶ Scout ─▶ Coach
+Caretaker ─▶ Analyst ─▶ Evaluator ─▶ Scout ─▶ Coach
 ```
 
 | Schritt | Skill | Aufgabe |
 |---|---|---|
-| 0. Cleanup | [fantasy-manager-cleanup](./.github/skills/fantasy-manager-cleanup/SKILL.md) | löscht alte `temp/`-Daten |
-| 1. Supporter | [fantasy-manager-supporter](./.github/skills/fantasy-manager-supporter/SKILL.md) | sammelt Fakten je Spieler (Statistik, Verletzung, News, Team-Ausrichtung), holt Rohdaten über [fantasy-manager-supporter-sleeper](./.github/skills/fantasy-manager-supporter-sleeper/SKILL.md) |
-| 2. Evaluator | [fantasy-effectiveness-evaluator](./.github/skills/fantasy-effectiveness-evaluator/SKILL.md) | macht aus jedem Report einen Effektivitätswert |
-| 3. Scout | [fantasy-opportunity-scout](./.github/skills/fantasy-opportunity-scout/SKILL.md) | findet Waiver-/Buy-low-/Sell-high-/Trade-Kandidaten |
-| 4. Coach | [fantasy-lineup-coach](./.github/skills/fantasy-lineup-coach/SKILL.md) | löst die Slot-Zuordnung und fasst alles zu **einem** Abschlussreport zusammen |
+| 0. Caretaker | [caretaker](./.github/skills/caretaker/SKILL.md) | löscht alte `temp/`-Daten |
+| 1. Analysts | [analyst-sleeper](./.github/skills/analyst-sleeper/SKILL.md), [analyst-team-analysis](./.github/skills/analyst-team-analysis/SKILL.md), [analyst-stats](./.github/skills/analyst-stats/SKILL.md), [doctor](./.github/skills/doctor/SKILL.md), [journalist](./.github/skills/journalist/SKILL.md) | spezialisierte Faktenrecherche; der `fantasy-manager` führt die Ergebnisse zusammen |
+| 2. Assistant Coach | [assistant-coach](./.github/skills/assistant-coach/SKILL.md) | erstellt pro Spieler aus allen Analyst-Reports einen einheitlichen, sauberen Report |
+| 3. Coach | [coach](./.github/skills/coach/SKILL.md) | erstellt aus einem Spielerreport eine Prediction für den nächsten Spieltag |
+| 4. Scout | [scout](./.github/skills/scout/SKILL.md) | findet Waiver-/Buy-low-/Sell-high-/Trade-Kandidaten |
 
 Regelbasis (Slots, Scoring, Waiver/FAAB, Trades):
-[SleeperFantasyManager.md](./.github/skills/fantasy-lineup-coach/SleeperFantasyManager.md).
+[SleeperFantasyManager.md](./.github/agents/SleeperFantasyManager.md).
 
 ## Nutzung
 
 Es gibt **keinen direkten Skript-Aufruf für dich als Nutzer** — die gesamte
 Logik und der Ablauf laufen ausschließlich über den
-[fantasy-manager-agent](./.github/agents/fantasy-manager-agent.agent.md). Du
+[fantasy-manager](./.github/agents/fantasy-manager.agent.md). Du
 stellst eine Anfrage (z. B. "stelle das beste Team für Woche 1 auf"); der
-Agent routet sie durch die feste Pipeline (Cleanup → Supporter → Evaluator →
-Scout → Coach) und liefert das Ergebnis. Die `tools/`-Skripte je Skill
+Agent routet sie durch die feste Pipeline (Caretaker → Analysts → Assistant Coach → Coach →
+Scout) und liefert das Ergebnis. Die `tools/`-Skripte je Skill
 (z. B. `coach_assign.py`) sind interne Implementierungsdetails, die der Agent
 bzw. die Skills selbst aufrufen — nicht für manuelle Einzelaufrufe gedacht.
 
 Ergebnis auf oberster Ebene: `lineup-<team>-w<n>.md` (finaler Report, mit
-Scout-Zusammenfassung und Begründung je Spieler). Maschinenlesbare
-Begleitdateien landen in `./temp/` — dieser Ordner ist in `.gitignore`
-ausgeschlossen und wird vom Cleanup-Skill geleert.
+Scout-Zusammenfassung und Begründung je Spieler). Beim Start eines neuen
+Report-Laufs löscht der Caretaker nach Bestätigung alte `lineup-*.md`-Reports
+und generierte Begleitdaten; Kader- und Liga-Konfigurationen bleiben erhalten.
+Maschinenlesbare Begleitdateien landen in `./temp/` — dieser Ordner ist in
+`.gitignore` ausgeschlossen und wird vom Caretaker-Skill geleert.
 
 ## Grundsätze
 
@@ -60,7 +62,7 @@ ausgeschlossen und wird vom Cleanup-Skill geleert.
   wiederverwendet.
 - **Nur belegte Fakten:** offizielle NFL-/Team-/ESPN-/PFR-Quellen zuerst, jede
   Zahl mit Quelle und Datum, keine erfundenen Spieler/Statistiken/Annahmen.
-  Kanonische Quellenliste: [sources.md](./.github/skills/fantasy-manager-supporter/sources.md).
+  Kanonische Quellenliste: [sources.md](./.github/skills/sources/sources.md).
 - **Tools direkt beim Skill:** jeder ausführende Skill bringt seine
   Python-Tools als eigenen `tools/`-Unterordner mit (nur Standardbibliothek);
-  Owner der gemeinsamen Engine ist `fantasy-lineup-coach`.
+  Owner der gemeinsamen Engine ist `coach`.

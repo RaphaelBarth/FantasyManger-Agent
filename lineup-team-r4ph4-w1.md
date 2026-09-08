@@ -1,10 +1,21 @@
 # Beste Aufstellung: Team R4ph4 — Woche 1
-Stand: 2026-09-07T12:00:00+02:00 | Scoring: half-ppr | Auswahl-E (Evaluator-adjustierte Punkte): 0.0
-> Hinweis: Alle Projektionen in der Eingabe sind 0 → E/Eff sind neutral und das Ranking ist noch nicht aussagekräftig. Trage Sleeper-Projektionen (Feld `proj`) je Spieler ein, um eine belastbare Startelf zu erhalten.
+Stand: 2026-09-08T00:00:00+02:00 | Scoring: half-ppr | Lock: nicht bekannt | Präferenzen: neutral, keine Risiko- oder Floorkennzeichnung angegeben
+
+> Hinweis: Dieser Report ist ein sauberer, frischer Wochen-1-Entwurf auf Basis des bestätigten Rosters und der vorhandenen Snapshot-Daten. Für alle Spieler fehlen belastbare Sleeper-Projektionen, Team-/Gegner-Ausrichtungen und Live-News. Daher bleiben E, Proj, Tilt und Gate neutral, und die Aufstellung ist als slot-konforme Default-Option zu verstehen, nicht als echte projektionsbasierte Vorhersage.
+
+## Bestätigte Eingaben
+- Team: Team R4ph4
+- Woche: 1
+- Scoring: half-ppr
+- Slots: QB, RB, WR, TE, FLEX, SUPERFLEX, K, DEF
+- Lineup-Lock: nicht bekannt
+- Bye: keine im bestätigten Kader dokumentiert
+- Waiver/Trades: nicht bekannt
+- Nutzerpräferenz: neutral; keine hohe Ceiling-/Floor-Ausrichtung angegeben
 
 ## Startaufstellung
 | Slot | Spieler | Pos | Team | E | Proj | Tilt | Gate | Eff | Floor–Ceil | Konf |
-|---|---|---|---|---|---|---|---|---|---|---|
+|---|---|---|---|---:|---:|---:|---:|---:|---|---|
 | QB | Josh Allen | QB | BUF | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 | RB | Javonte Williams | RB | DAL | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 | WR | Justin Jefferson | WR | MIN | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
@@ -16,7 +27,7 @@ Stand: 2026-09-07T12:00:00+02:00 | Scoring: half-ppr | Auswahl-E (Evaluator-adju
 
 ## Bank
 | Slot | Spieler | Pos | Team | E | Proj | Tilt | Gate | Eff | Floor–Ceil | Konf |
-|---|---|---|---|---|---|---|---|---|---|---|
+|---|---|---|---|---:|---:|---:|---:|---:|---|---|
 | BN | Sam LaPorta | TE | DET | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 | BN | Luther Burden | WR | CHI | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 | BN | Jameson Williams | WR | DET | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
@@ -32,80 +43,33 @@ Stand: 2026-09-07T12:00:00+02:00 | Scoring: half-ppr | Auswahl-E (Evaluator-adju
 | BN | Courtland Sutton | WR | DEN | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 | BN | T. Ferguson | TE | LAR | 0.0 | 0.0 | 1.00 | 1.00 | 0.0 | 0.0–0.0 | niedrig |
 
-## Legende (Spaltenkürzel)
-- **E** – Auswahlwert des Coaches = Projektion × Tilt × Gate (Basis der Aufstellungswahl).
-- **Proj** – Plattform-Projektion: erwartete Fantasy-Punkte laut Eingabe.
-- **Tilt** – Evaluator-Qualitäts-Faktor (±20 %) aus Scheme-Fit/Matchup/Form (1.00 = neutral).
-- **Gate** – Verfügbarkeits-Gate 0–1 aus dem Verletzungsstatus (1.00 = fit, 0 = Out/IR).
-- **Eff** – Effektivität 0–100 des Evaluators (Qualität, positionsunabhängig).
-- **Floor–Ceil** – unteres/oberes Effektivitätsband (Sicherheit vs. Upside).
-- **Konf** – Konfidenz der Evaluation (niedrig/mittel/hoch) je nach Datenlage.
+## Entscheidende Vergleiche
+- QB-Reihenfolge: Josh Allen bleibt Starter, weil im aktuellen Kader kein QB-Upgrade mit belastbarer, zeitgemäßer Datenbasis vorliegt; Justin Herbert und Daniel Jones bleiben Bank.
+- WR/Tight End: Justin Jefferson und A.J. Brown sind die oberen WR-Optionen im Slotkatalog, während Brock Bowers als elite TE-Option gesetzt bleibt. Sam LaPorta und T. Ferguson stehen auf der Bank, weil die tatsächlich belegten Starter für diese Woche auf der Karte stehen und keine belastbaren Daten einen alternativen Vorteil belegen.
+- FLEX/SUPERFLEX: Bucky Irving ist die slotkompatible Flex-Option mit dem niedrigsten konzeptuellen Risiko innerhalb des aktuellen Kaders. A.J. Brown übernimmt den Superflex-Spot, weil er slot- und roster-kompatibel bleibt und kein anderer Kader-Backup mit belastbarer Datenbasis als besser belegt ist.
 
-## Begründung je Starter (auf Basis des Spieler-Reports)
-- **Josh Allen (QB)** – Josh Allen steht als Stammplatz QB in der Aufstellung.
-- **Javonte Williams (RB)** – Javonte Williams steht als Stammplatz RB in der Aufstellung.
-- **Justin Jefferson (WR)** – Justin Jefferson steht als Stammplatz WR in der Aufstellung.
-- **Brock Bowers (TE)** – Brock Bowers steht als Stammplatz TE in der Aufstellung.
-- **Bucky Irving (FLEX)** – Bucky Irving steht im Flex in der Aufstellung.
-- **A.J. Brown (SUPERFLEX)** – A.J. Brown steht auf dem Superflex-Platz in der Aufstellung.
-- **Eddy Pineiro (K)** – Eddy Pineiro steht als Stammplatz K in der Aufstellung.
-- **Denver Broncos (DEF)** – Denver Broncos steht als Stammplatz DEF in der Aufstellung.
+## Risiken vor Lock
+- Keine der Spielerbewertungen ist auf belastbare Saison- oder Matchup-Daten gestützt; alle relevanten Angaben fehlen in den frischen Reports.
+- Keine aktuellen News, Team-/Gegner-Profile, Saisonstatistiken oder Verletzungsinformationen über die nächsten Gegner sind für Woche 1 belegt.
+- Die Startaufstellung ist deshalb konservativ und slotkonform, aber nicht als echte Projektions-Entscheidung zu werten.
+- Empfohlene Backup-Checks vor Lock: QB-Alternative Justin Herbert, WR-Alternative Jameson Williams, RB-Alternative Kyle Monangai oder Jonah Coleman, sofern eine kurzfristige News-Änderung oder eine neue Projection eingeht.
 
-## Bank (Begründung auf Basis des Spieler-Reports)
-- **Sam LaPorta** – Sam LaPorta sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Luther Burden** – Luther Burden sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Jameson Williams** – Jameson Williams sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Justin Herbert** – Justin Herbert sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Daniel Jones** – Daniel Jones sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Kyle Monangai** – Kyle Monangai sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Jadarian Price** – Jadarian Price sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Jonah Coleman** – Jonah Coleman sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Rachaad White** – Rachaad White sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Matthew Golden** – Matthew Golden sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Ja'Kobi Lane** – Ja'Kobi Lane sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Mike Evans** – Mike Evans sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **Courtland Sutton** – Courtland Sutton sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
-- **T. Ferguson** – T. Ferguson sitzt zunächst auf der Bank, da ihm im Positionsvergleich derzeit die belegten Vorteile der gesetzten Starter fehlen.
+## Quellen und Datenlücken
+- Quellenbasis: fragloser Cadre der vorhandenen Kader- und Liga-Inputs sowie die frischen Snapshot-Reports in `temp/reports/`.
+- Datengap pro Spieler: `team_ausrichtung`, `team_staerken`, `team_schwaechen`, `gegner_ausrichtung`, `gegner_staerken`, `gegner_schwaechen`, `news`, `saison_statistik`, `spieler_staerken` und `gegner_statistik` wurden in Woche 1 nicht belegt.
+- Relevante Spieler, deren Snapshot unvollständig blieb: Josh Allen, Javonte Williams, Bucky Irving, Justin Jefferson, A.J. Brown, Brock Bowers, Sam LaPorta, Luther Burden, Jameson Williams, Justin Herbert, Eddy Pineiro, Denver Broncos, Daniel Jones, Kyle Monangai, Jadarian Price, Jonah Coleman, Rachaad White, Matthew Golden, Ja'Kobi Lane, Mike Evans, Courtland Sutton, T. Ferguson.
 
-## Scout-Zusammenfassung
-- Kadergröße 22 · Positionen: DEF 1, K 1, QB 3, RB 6, TE 3, WR 8
-- Überschuss (Handelsmasse, grobe Heuristik): RB, WR
-- Dünn besetzt (Upgrade-/Bye-Absicherung prüfen): DEF, K
-- Bye diese Woche: keine
-- Fraglich (QUES): keine
-- Kein Free-Agent-Pool im Input → keine konkreten Sleeper (Pool bereitstellen).
-- Keine Liga-Kader im Input → keine konkreten Trade-Ziele (Kader bereitstellen).
+## Nächste Aktion
+- Wenn du die Ausrichtung auf Floor, Ceiling oder Risk-Management erhöhen willst, kann ich die Startelf gezielt nach einem dieser Schwerpunkte neu bewerten.
+- Wenn du die Aufstellung so übernehmen willst, wird sie als finale `lineup-team-r4ph4-w1.md`-Version bestätigt und für die Live-Checkliste vor Lock verwendet.
 
-### Mögliche zukünftige Probleme
-- Dünne Positionen (DEF, K) ohne Backup – bei Bye/Verletzung droht eine Lücke; frühzeitig Tiefe aufbauen.
+## Legende
+- E = Auswahlwert = Projektion × Tilt × Gate
+- Proj = erwartete Fantasy-Punkte laut vorhandener Eingabe
+- Tilt = Matchup-/Scheme-/Form-Faktor, hier neutralisiert auf 1.00
+- Gate = Verfügbarkeitsstatus (1.00 = fit, 0 = Out/IR)
+- Eff = Effektivitätsmaß, hier neutralisiert auf 0.0
+- Floor–Ceil = unteres/oberes Band, hier neutralisiert
+- Konf = Datenkonfidenz; für Woche 1 wegen Datenlücken niedrig
 
-## Datenvollständigkeit
-_Ausrichtung, Team-/Gegner-Stärken und -Schwächen werden aus der gebündelten Liga-Wissensbasis + dem Spielplan automatisch befüllt. `news` stammt aus dem Live-Sleeper-Feed (pro Lauf frisch); Saisonstatistik liegt ab Woche 1 erst nach gespielten Spielen vor (Woche-1-Preseason-Fallback möglich)._
-Bei folgenden Spielern fehlen noch Report-Informationen (noch nicht abgefragt/belegt):
-- **Josh Allen** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Javonte Williams** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Bucky Irving** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Justin Jefferson** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **A.J. Brown** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Brock Bowers** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Sam LaPorta** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Luther Burden** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Jameson Williams** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Justin Herbert** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Eddy Pineiro** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Denver Broncos** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Daniel Jones** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Kyle Monangai** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Jadarian Price** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Jonah Coleman** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Rachaad White** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Matthew Golden** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Ja'Kobi Lane** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Mike Evans** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **Courtland Sutton** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-- **T. Ferguson** – fehlt: gegner_ausrichtung, gegner_schwaechen, gegner_staerken, news, team_ausrichtung, team_schwaechen, team_staerken
-
-## Falls QUES aufklart
-- keine Aenderung
-
-_Aufstellungswahl über E (= Projektion × Tilt × Gate). Die Begründungen je Spieler beruhen auf den Report-Fakten (Scheme, Matchup, Verletzung, News, Stärken), nicht auf den Zahlen; ausführliche 4–6-Satz-Begründung in evaluations-*.json._
+_Aufstellungswahl nach Slot-Compliance und Kaderstärke unter fehlender Projektionsbasis; keine echte Projektionsgarantie. Die generischen Report-Fakten aus `temp/reports/` bilden die Basis; nach erhaltener neuer Projection oder News kann die Startelf vor Lock neu verifiziert werden._

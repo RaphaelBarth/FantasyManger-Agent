@@ -1,10 +1,10 @@
 ---
-name: fantasy-opportunity-scout
+name: scout
 description: >-
   Scout-Agent, der für einen Fantasy-Kader potenzielle Sleeper (unterbewertete
   Waiver-/Free-Agent-Spieler mit steigender Rolle) sowie gute Trade-Kandidaten
   (Buy-low, Sell-high, Trade-Paarungen) findet. Nutzt die Sub-Skills
-  fantasy-manager-supporter (Fakten) und fantasy-effectiveness-evaluator
+  spezialisierten Analysts (Fakten) und coach
   (Effektivität) und richtet sich nach den Sleeper-Regeln (Waiver/FAAB, Trades).
   Verwende den Skill bei Anfragen wie "finde Sleeper", "wer ist ein guter
   Waiver-Pickup", "Buy-low/Sell-high", "welche Trades lohnen sich".
@@ -21,16 +21,18 @@ Buy-low-Ziele, Sell-high aus dem eigenen Kader und faire Trade-Paarungen.
 
 ## Sub-Skills und Referenz
 
-- **fantasy-manager-supporter** → Fakten je Spieler (Statistik aktuelle Saison,
+- **analyst-stats**, **doctor**, **journalist** und
+  **analyst-team-analysis** → Fakten je Spieler (Statistik aktuelle Saison,
   Verletzung, Team-Ausrichtung, nächster Gegner).
-- **fantasy-effectiveness-evaluator** → Effektivitätswert je Spieler.
+- **coach** → Einzelspieler-Prediction und Effektivitätswert je Spieler.
 - **Sleeper-Regeln** (Waiver/FAAB, Trades, Roster/Slots) aus
-  [SleeperFantasyManager.md](../fantasy-lineup-coach/SleeperFantasyManager.md);
+  [SleeperFantasyManager.md](../agents/SleeperFantasyManager.md);
   die konkrete Ligakonfiguration hat Vorrang.
 
 Der Scout bewertet jeden Kandidaten über die beiden Sub-Skills und erfindet keine
 Spieler oder Werte. Fehlt der Kandidatenpool, wird er angefordert/geladen.
-Reports werden **ohne Cache** bei jeder Anfrage neu erstellt (siehe Supporter).
+Der Scout verwendet ausschließlich den kanonischen Report aus
+`assistant-coach` und erstellt seine Empfehlungen bei jeder Anfrage neu.
 
 ## Eingaben
 
@@ -99,7 +101,7 @@ Start %, ADP, Projektion, Name-Value). Große Lücke = Handelschance.
 
 ```markdown
 # Scout-Report: <Team> — Woche <n>
-Stand: <as_of> | Scoring: <...> | Basierend auf: supporter + evaluator (+ Sleeper-Regeln)
+Stand: <as_of> | Scoring: <...> | Basierend auf: analyst + evaluator (+ Sleeper-Regeln)
 
 ## Bedarfsanalyse
 - Überschuss/Mangel je Position, Starter-Risiken, Bye-Lücken, Handelsmasse

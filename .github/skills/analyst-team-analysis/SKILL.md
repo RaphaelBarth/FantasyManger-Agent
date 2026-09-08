@@ -1,18 +1,24 @@
 ﻿---
-name: fantasy-manager-supporter-team-analysis
+name: analyst-team-analysis
 description: >-
-  Fach-Subskill des Supporters: bestimmt den nächsten Gegner (Team, Datum,
+  Fach-Subskill des Analysts: bestimmt den nächsten Gegner (Team, Datum,
   Heim/Auswärts, Bye) und trägt die Team-Ausrichtung (Offense-/Defense-Schema,
   Coordinators, bevorzugte Spielertypen), metrik-belegte Team-Stärken/
   -Schwächen UND die Gegner-Statistik (Werte des Gegners gegen die relevante
   Position/Team) zusammen — jeweils für das eigene Team UND den nächsten
   Gegner. Keine Statistik des Subjekts selbst, keine Verletzung, keine News,
-  keine Fantasy-Bewertung. Wird vom fantasy-manager-supporter orchestriert,
+  keine Fantasy-Bewertung. Wird vom fantasy-manager orchestriert,
   kann aber auch einzeln für "Ausrichtung von Team X" oder "wie steht Y gegen
   den nächsten Gegner da" genutzt werden.
 ---
 
-# Fantasy Manager Supporter — Team-Auswertung
+# Analyst — Team-Auswertung
+
+## Quellen
+
+Die verbindliche Online-Quellenbasis und Zitierregeln stehen in
+[`sources.md`](./sources.md). Team- und Matchup-Aussagen
+benötigen eine konkrete Metrik, URL, Veröffentlichungsdatum und `retrieved_at`.
 
 ## Ziel
 
@@ -29,12 +35,12 @@ müssen den Gegner nicht erneut auflösen.
 
 | Nicht Teil dieses Skills | Zuständig |
 |---|---|
-| Statistikwerte des Subjekts selbst (Zahlen, Game Log) | `fantasy-manager-supporter-stats` |
-| Verletzungsstatus | `fantasy-manager-supporter-injuries` |
-| News/Meldungen | `fantasy-manager-supporter-news` |
+| Statistikwerte des Subjekts selbst (Zahlen, Game Log) | `analyst-stats` |
+| Verletzungsstatus | `doctor` |
+| News/Meldungen | `journalist` |
 
 Die **Gegner-Statistik** (`next_opponent.opponent_stats`) ist Teil **dieses**
-Skills, nicht von `fantasy-manager-supporter-stats` — sie gehört fachlich zur
+Skills, nicht von `analyst-stats` — sie gehört fachlich zur
 Gegner-Auswertung, nicht zur Eigenstatistik des Subjekts.
 
 ## Eingaben
@@ -64,7 +70,7 @@ as_of: ISO-8601-Zeitpunkt, optional; standardmäßig jetzt
 
 ## Sleeper als Hilfsquelle (Sub-Subskill)
 
-`fantasy-manager-supporter-sleeper` liefert Team-Kontext (Depth Chart, Schedule,
+`analyst-sleeper` liefert Team-Kontext (Depth Chart, Schedule,
 Roster) — nutzbar, um den nächsten Gegner/Spielplan schnell zu verifizieren
 und den Teamkontext eines Spielers zu bestätigen. Für **Scheme-Fakten** (HC/OC/
 DC, Grundschema, Tendenzen) ist Sleeper keine Primärquelle; dafür gelten die

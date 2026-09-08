@@ -1,18 +1,24 @@
 ﻿---
-name: fantasy-manager-supporter-stats
+name: analyst-stats
 description: >-
-  Fach-Subskill des Supporters: trägt ausschließlich reine Statistiken der
+  Fach-Subskill des Analysts: trägt ausschließlich reine Statistiken der
   aktuellen NFL-Saison des Subjekts selbst zusammen — Spieler-Saisonwerte,
   Game Log und metrik-belegte Spieler-Stärken (bzw. Team-Record/-Werte).
   Woche-1-Preseason-Ausnahme möglich. Kein Profil, keine Verletzung, keine
   News, keine Team-Ausrichtung/Stärken-Schwächen-Bewertung und keine
   Gegner-Statistik — dafür siehe die Geschwister-Subskills (Gegner-Statistik
-  gehört zu fantasy-manager-supporter-team-analysis, da dieser den Gegner
-  ohnehin auflöst). Wird vom fantasy-manager-supporter orchestriert, kann aber
+  gehört zu analyst-team-analysis, da dieser den Gegner
+  ohnehin auflöst). Wird vom fantasy-manager orchestriert, kann aber
   auch einzeln für "Statistik zu Spieler X" genutzt werden.
 ---
 
-# Fantasy Manager Supporter — Statistiken
+# Analyst — Statistiken
+
+## Quellen
+
+Die verbindliche Online-Quellenbasis und Zitierregeln stehen in
+[`sources.md`](./sources.md). Statistikwerte benötigen eine
+Metrik, URL, Veröffentlichungsdatum und `retrieved_at`.
 
 ## Ziel
 
@@ -26,11 +32,11 @@ keine News, **keine Gegner-Statistik** (die gehört zur Team-Auswertung).
 
 | Nicht Teil dieses Skills | Zuständig |
 |---|---|
-| Team-/Gegner-Ausrichtung (Scheme), Stärken/Schwächen von Teams | `fantasy-manager-supporter-team-analysis` |
-| **Gegner-Statistik** (Werte der gegnerischen Defense/Offense gegen die Position/Team) | `fantasy-manager-supporter-team-analysis` — der Skill löst den Gegner ohnehin auf und liefert Ausrichtung + Stärken/Schwächen + Statistik in einem Zug |
-| Verletzungsstatus | `fantasy-manager-supporter-injuries` |
-| News/Meldungen | `fantasy-manager-supporter-news` |
-| Wer der nächste Gegner ist (Team, Datum, Heim/Auswärts, Bye) | `fantasy-manager-supporter-team-analysis` |
+| Team-/Gegner-Ausrichtung (Scheme), Stärken/Schwächen von Teams | `analyst-team-analysis` |
+| **Gegner-Statistik** (Werte der gegnerischen Defense/Offense gegen die Position/Team) | `analyst-team-analysis` — der Skill löst den Gegner ohnehin auf und liefert Ausrichtung + Stärken/Schwächen + Statistik in einem Zug |
+| Verletzungsstatus | `doctor` |
+| News/Meldungen | `journalist` |
+| Wer der nächste Gegner ist (Team, Datum, Heim/Auswärts, Bye) | `analyst-team-analysis` |
 
 ## Eingaben
 
@@ -62,7 +68,7 @@ ausschließlich mit dem Subjekt selbst.
 
 ## Sleeper als Hilfsquelle (Sub-Subskill)
 
-Der Skill `fantasy-manager-supporter-sleeper` (Sleeper NFL Data Collector) darf
+Der Skill `analyst-sleeper` (Sleeper NFL Data Collector) darf
 als **Ausgangspunkt/Kreuzcheck** aufgerufen werden — z. B. um schnell zu sehen,
 welche Spiele/Wochen bereits existieren oder welchen Game-Log Sleeper zeigt.
 **Sleeper-Werte allein sind kein hinreichender Beleg** für Statistik oder
@@ -102,8 +108,8 @@ Rückverweis, nie als alleiniger Beleg. Suchmaschinen-Snippets zählen nicht.
 
 ## Ausgabe: JSON-Fragment
 
-Deckt genau den Statistik-Teil des Supporter-Gesamtschemas ab
-(`fantasy-lineup-coach/tools/schemas/report.schema.json`), damit der Orchestrator es 1:1 einfügen kann:
+Deckt genau den Statistik-Teil des Analyst-Gesamtschemas ab
+(`coach/tools/schemas/report.schema.json`), damit der Orchestrator es 1:1 einfügen kann:
 
 ```json
 {
